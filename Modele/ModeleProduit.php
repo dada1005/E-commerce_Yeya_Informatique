@@ -1,31 +1,69 @@
 <?php
-    require_once("Modele/Database.php");
+        function getConnexion()
+    {
+        $bdd = new PDO(
+            "mysql:host=localhost:3306;dbname=yeya_informatique;charset=utf8",
+            "root",
+            "",
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+        return $bdd;
+    }
 
-    class ModeleProduit {
-        public static function getListProduit():array{
 
-            $db = Database::getConnexion();
-           
-            $req = $db->query("select * from produit" );
-            
-            $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+    //---- Afficher tous les produits ----
+    function getAllProduits()
+    {
+        $db = getConnexion();
+        $sql = $db->query("SELECT * FROM produit");
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-            return $resultat;    
-            
-        }
+    //---- Ajouter un produit ----
+    function addProduit($nomProduit, $description, $prix, $image, $idCategorie)
+    {
+        $db = getConnexion();
+        $req = $db->prepare("INSERT INTO produit (nomProduit, description, prix, image, idCategorie)
+        VALUES (?, ?, ?, ?, ?)");
+        $req->execute([$nomProduit, $description, $prix, $image, $idCategorie]);
+        return $db->lastInsertId();
+    }
 
-        public static function addProduit($image, $titre, $type,  $description, $prix, $id_user): bool|string{
-            $db = Database::getConnexion();
+    //----- Récupérer tous les produits par catégorie -----
+    function getProduitsByCategorie($idCategorie)
+    {
+        $db = getConnexion();
+        $sql = $db->prepare("SELECT * FROM produit WHERE idCategorie = ?");
+        $sql->execute([$idCategorie]);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-            $req = "insert into annonce (image_annonce, titre_annonce, type_annonce, description_annonce, prix_annonce, id_user)
-            values (:image, :titre, :type, :description, :prix, :id_user)";
-            $reponse = $db->prepare($req);
-            $reponse->execute(array(":image"=>$image,":titre"=>$titre, ":type" =>$type,
-            ":description"=>$description, ":prix"=>$prix, ":id_user"=>$id_user));
-            $reponse->closeCursor();
-            
-            return $reponse->rowCount() > 0; 
+    //---- Récupérer un produit par ID ----
+    function getProduitById($id)
+    {
+        $db = getConnexion();
+        $sql = $db->prepare("SELECT * FROM produit WHERE idProduit = ?");
+        $sql->execute([$id]);
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+    function getProduitsAccueil()
+{
+    $db = getConnexion();
+    $sql = $db->query("SELECT * FROM produit ORDER BY idProduit ASC LIMIT 4");
+    return $sql->fetchAll(PDO::FETCH_ASSOC);
+}
 
-        }
-    }    
+
+    //---- Afficher toutes les catégories ----
+    function getAllCategories()
+    {
+        $db = getConnexion();
+        $rq = $db->query("SELECT * FROM categorie");
+        return $rq->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    
+
+
 ?>
