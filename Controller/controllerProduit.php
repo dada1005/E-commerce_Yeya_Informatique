@@ -2,78 +2,72 @@
 //require_once("Modele/Modele.php");
 require_once(__DIR__ . "/../Modele/modeleProduit.php");
 
-
-
 //----- Page Catalogue -----
-function afficherCatalogue()
-{
-    $produits = getAllProduits();
-
-    $title = "Catalogue";
-
-    ob_start();
-    require "Vues/VueUser/catalogue.php";
-    $content = ob_get_clean();
-
-    require "Vues/gabarit.php";
-}
-
-
-// function afficherCatalogue()
-// {
-//     // Vérifier si une catégorie est demandée
-//     $idCategorie = $_GET['idCategorie'] ?? null;
-
-//     if ($idCategorie) {
-//         // Produits filtrés par catégorie
-//         $produits = getProduitsByCategorie($idCategorie);
-//         $title = "Produits de la catégorie";
-//     } else {
-//         // Tous les produits
-//         $produits = getAllProduits();
-//         $title = "Catalogue";
-//     }
-
-//     ob_start();
-//     require "Vues/VueUser/catalogue.php";
-//     $content = ob_get_clean();
-
-//     require "Vues/gabaritAccueil.php";
-// }
-
-
-//----- Page Produit -----
-    function afficherProduit()
+    function afficherCatalogue()
     {
-        $id = $_GET['id'] ?? 0;
-        $produit = getProduitById($id);
+        $produits = getAllProduits();
 
-        if (!$produit) {
-            die("Produit introuvable");
-        }
-
-        $title = $produit['nomProduit'];
+        $title = "Catalogue";
 
         ob_start();
-        require 'Vues/VueUser/produit.php';
-        $content = ob_get_clean();
-
-        require 'Vues/gabarit.php';
-    }
-
-    // //----- Page Accueil / Catégories -----
-    function afficherAccueil()
-    {
-        $categories = getAllCategories();
-        $produitsAccueil = getProduitsAccueil(); 
-
-        $title = "Accueil";
-
-        ob_start();
-        require "Vues/VueUser/home.php";
+        require "Vues/VueUser/catalogue.php";
         $content = ob_get_clean();
 
         require "Vues/gabarit.php";
     }
-    //-----afficher le panier------
 
+
+    // function afficherCatalogue()
+    // {
+
+    //     // Filtre catégorie
+    //     if (isset($_GET['cat'])) {
+    //         $produits = getProduitsByCategorie($_GET['cat']);
+    //     } else {
+    //         $produits = getAllProduits();
+    //     }
+
+    //     $categories = getAllCategories();
+    //     ob_start();
+    //     require "Vues/VueUser/catalogue.php";
+    //     $content = ob_get_clean();
+
+    //     require "Vues/gabarit.php";
+    // }
+
+
+
+//----- Page Produit -----
+function afficherProduit()
+{
+    $id = $_GET['id'] ?? 0;
+    $produit = getProduitById($id);
+
+    if (!$produit) {
+        die("Produit introuvable");
+    }
+
+    $title = $produit['nomProduit'];
+
+    ob_start();
+    require 'Vues/VueUser/produit.php';
+    $content = ob_get_clean();
+
+    require 'Vues/gabarit.php';
+}
+
+// //----- Page Accueil / Catégories -----
+function afficherAccueil()
+{
+    $categories = getAllCategories();
+    $produitsAccueil = getProduitsAccueil();
+
+    $title = "Accueil";
+
+    ob_start();
+    require "Vues/VueUser/home.php";
+    $content = ob_get_clean();
+
+    require "Vues/gabarit.php";
+}
+    //-----afficher le panier------

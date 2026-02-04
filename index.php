@@ -1,9 +1,9 @@
 <?php
-session_start();
+    session_start();
 
-$page = $_GET['page'] ?? 'home';
+    $page = $_GET['page'] ?? 'home';
 
-switch ($page) {
+    switch ($page) {
 
     case 'home':
         require "Controller/controllerProduit.php";
@@ -32,6 +32,6 @@ switch ($page) {
 
     default:
         echo "Page introuvable";
-}
+    }
 
 ?>

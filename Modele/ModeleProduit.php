@@ -46,12 +46,13 @@
         $sql->execute([$id]);
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
-    function getProduitsAccueil()
-{
-    $db = getConnexion();
-    $sql = $db->query("SELECT * FROM produit ORDER BY idProduit ASC LIMIT 4");
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
-}
+    //---affficher quatre produits dans la page d'accueil
+        function getProduitsAccueil()
+    {
+        $db = getConnexion();
+        $sql = $db->query("SELECT * FROM produit ORDER BY idProduit ASC LIMIT 4");
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     //---- Afficher toutes les catégories ----
@@ -63,7 +64,6 @@
     }
 
 
-    
 
 
 ?>
