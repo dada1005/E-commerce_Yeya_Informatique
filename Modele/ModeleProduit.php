@@ -15,7 +15,7 @@
     function getAllProduits()
     {
         $db = getConnexion();
-        $sql = $db->query("SELECT * FROM produit");
+        $sql = $db->query("SELECT * FROM produit ORDER BY idProduit");
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -30,23 +30,24 @@
     }
 
     //----- Récupérer tous les produits par catégorie -----
-    function getProduitsByCategorie($idCategorie)
-    {
-        $db = getConnexion();
-        $sql = $db->prepare("SELECT * FROM produit WHERE idCategorie = ?");
-        $sql->execute([$idCategorie]);
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
-    }
+    // function getProduitsByCategorie($idCategorie)
+    // {
+    //     $db = getConnexion();
+    //     $sql = $db->prepare("SELECT * FROM produit WHERE idCategorie = ?");
+    //     $sql->execute([$idCategorie]);
+    //     return $sql->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
     //---- Récupérer un produit par ID ----
-    function getProduitById($id)
-    {
-        $db = getConnexion();
-        $sql = $db->prepare("SELECT * FROM produit WHERE idProduit = ?");
-        $sql->execute([$id]);
-        return $sql->fetch(PDO::FETCH_ASSOC);
-    }
-    //---affficher quatre produits dans la page d'accueil
+     function getProduitById($id)
+{
+    $bd = getConnexion();
+    $sql = $bd->prepare("SELECT * FROM produit WHERE idProduit = ?");
+    $sql->execute([$id]);
+    return $sql->fetch(PDO::FETCH_ASSOC);
+}
+
+    //---afficher quatre produits dans la page d'accueil
         function getProduitsAccueil()
     {
         $db = getConnexion();

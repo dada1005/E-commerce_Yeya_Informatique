@@ -1,4 +1,6 @@
 <?php
+
+  
         function getConnexion()
     {
         $bdd = new PDO(
@@ -10,58 +12,30 @@
         return $bdd;
     }
 
-        //-----AFFICHERLE PANIER-----
+        //-----AFFICHER LE PANIER-----
 
-    function initPanier() {
-        if (!isset($_SESSION['panier'])) {
-            $_SESSION['panier'] = [];
-        }
-    }
+    
 
-    function ajouterAuPanier($idProduit, $quantite = 1) {
-        initPanier();
+// function getProduitsByIds($ids) {
+//     $bd= getConnexion();
 
-        if (isset($_SESSION['panier'][$idProduit])) {
-            $_SESSION['panier'][$idProduit] += $quantite;
-        } else {
-            $_SESSION['panier'][$idProduit] = $quantite;
-        }
-    }
+//     $in  = str_repeat('?,', count($ids) - 1) . '?';
+//     $sql = $bd->prepare("SELECT * FROM produit WHERE idProduit IN ($in)");
+//     $sql->execute($ids);
 
-    function supprimerDuPanier($idProduit) {
-        if (isset($_SESSION['panier'][$idProduit])) {
-            unset($_SESSION['panier'][$idProduit]);
-        }
-    }
-
-    function viderPanier() {
-        $_SESSION['panier'] = [];
-    }
-
-    function getPanier() {
-        initPanier();
-        return $_SESSION['panier'];
-    }
-
-    //-----AFFICHER UNE COMMANDE ----
+//     return $sql->fetchAll(PDO::FETCH_ASSOC);
+// }
 
 
-    function enregistrerCommande($nom, $email, $adresse, $telephone, $panier, $total)
-    {
-        // Exemple simple : stocker dans un fichier ou une base plus tard
-        $commande = [
-            "nom" => $nom,
-            "email" => $email,
-            "adresse" => $adresse,
-            "telephone" => $telephone,
-            "panier" => $panier,
-            "total" => $total,
-            "date" => date("Y-m-d H:i:s")
-        ];
+    
+function getProduitById($id)
+{
+    $bd = getConnexion();
+    $req = $bd->prepare("SELECT * FROM produit WHERE idProduit = ?");
+    $req->execute([$id]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
 
-        // Pour l'instant on stocke dans la session
-        $_SESSION['derniere_commande'] = $commande;
 
-        return true;
-    }
+    
 ?>

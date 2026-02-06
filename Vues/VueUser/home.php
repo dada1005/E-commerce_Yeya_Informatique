@@ -35,7 +35,7 @@
 
 <!-- SECTION : QUI SOMMES-NOUS -->
 <section class="container my-5">
-    <h2 class="display-5 mb-3" style="color: red; text-align:center; font-weight: bold;">Qui sommes-nous ?</h2>
+    <h2 class="display-5 mb-4" style="color: red; text-align:center; font-weight: bold;">Qui sommes-nous ?</h2>
     <p style="font-size: 1.5em; text-align: justify;">
         Yeya Informatique est une entreprise de dépannage et vente du matériel informatique située au 183 rue
         République à Caudebec
@@ -75,7 +75,7 @@
 </section>
 <!-- SECTION : CATÉGORIES -->
 <section class="container my-5">
-    <h3 class="display-5 mb-4" style="color: red;">Catégories</h3>
+    <h3 class="display-5 mb-3" style="color: red; font-weight: bold;">Catégories</h3>
     <div class="row g-3">
         <?php foreach ($categories as $cat): ?>
             <div class="col-6 col-md-3">
@@ -93,20 +93,18 @@
 
 <!-- SECTION : PRODUITS RÉCENTS -->
 <section class="container my-5">
-    <h3 class="display-5 mb-4" style="color: red;">Produits récents</h3>
+    <h3 class="display-5 mb-3" style="color: red; font-weight: bold;">Produits récents</h3>
     <div class="row g-4">
         <?php foreach ($produitsAccueil as $p): ?>
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="card" style="background-color: white; cursor: pointer;  border-radius: 12px;
                 transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);">
                     <img src="Images/<?= $p['image'] ?>" class="card-img-top" alt="<?= $p['nomProduit'] ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $p['nomProduit'] ?></h5>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="prix fw-bold" style="color: red;"><?= $p['prix'] ?> €</span>
-                            <a href="index.php?page=catalogue"<?= $p['idProduit'] ?>
-                                class="btn btn-primary btn-sm">Voir</a>
-                        </div>
+                    <div class="card-body d-flex justify-content-between align-items-center mt-3">
+                        <h5 class="card-title" style="color:red"><?= $p['nomProduit'] ?></h5>
+                        <a href="index.php?page=produit&id=<?= $p['idProduit'] ?>"
+                            class="btn btn-primary btn-sm">Voir le produit
+                        </a>
                     </div>
                 </div>
             </div>

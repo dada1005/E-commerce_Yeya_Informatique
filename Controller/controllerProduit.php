@@ -17,57 +17,37 @@ require_once(__DIR__ . "/../Modele/modeleProduit.php");
     }
 
 
-    // function afficherCatalogue()
-    // {
-
-    //     // Filtre catégorie
-    //     if (isset($_GET['cat'])) {
-    //         $produits = getProduitsByCategorie($_GET['cat']);
-    //     } else {
-    //         $produits = getAllProduits();
-    //     }
-
-    //     $categories = getAllCategories();
-    //     ob_start();
-    //     require "Vues/VueUser/catalogue.php";
-    //     $content = ob_get_clean();
-
-    //     require "Vues/gabarit.php";
-    // }
-
-
 
 //----- Page Produit -----
-function afficherProduit()
+
+    function afficherProduit()
 {
-    $id = $_GET['id'] ?? 0;
+    $id = $_GET["id"] ?? 0;
     $produit = getProduitById($id);
 
-    if (!$produit) {
-        die("Produit introuvable");
-    }
-
-    $title = $produit['nomProduit'];
+    $title = "Produit";
 
     ob_start();
-    require 'Vues/VueUser/produit.php';
-    $content = ob_get_clean();
-
-    require 'Vues/gabarit.php';
-}
-
-// //----- Page Accueil / Catégories -----
-function afficherAccueil()
-{
-    $categories = getAllCategories();
-    $produitsAccueil = getProduitsAccueil();
-
-    $title = "Accueil";
-
-    ob_start();
-    require "Vues/VueUser/home.php";
+    require "Vues/VueUser/produit.php";
     $content = ob_get_clean();
 
     require "Vues/gabarit.php";
 }
-    //-----afficher le panier------
+
+
+ //----- Page Accueil / Catégories -----
+    function afficherAccueil()
+    {
+        $categories = getAllCategories();
+        $produitsAccueil = getProduitsAccueil();
+
+        $title = "Accueil";
+
+        ob_start();
+        require "Vues/VueUser/home.php";
+        $content = ob_get_clean();
+
+        require "Vues/gabarit.php";
+    }
+
+?>
