@@ -84,6 +84,27 @@ function afficherPanier()
 }
 
 
+function supprimerProduit()
+{
+    $id = $_GET['id'];
+
+    if (isset($_SESSION['panier'][$id])) {
+        unset($_SESSION['panier'][$id]);
+    }
+
+    header("Location: index.php?page=panier");
+    exit;
+
+
+    $title = "panier";
+
+    ob_start();
+    require "Vues/VueUser/panier.php";
+    $content = ob_get_clean();
+
+    require "Vues/gabarit.php";
+}
+
 
 // vider le panier
 
