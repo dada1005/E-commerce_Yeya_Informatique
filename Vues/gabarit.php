@@ -25,7 +25,7 @@
                     <a class="nav-link"  staria-current="page" href="index.php?page=home">Accueil</a>
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="contact.html">Contact</a>
-                    <a class="nav-link" href="index.php?page=compte"><i class="bi bi-person-fill"></i></a>
+                    <a class="nav-link" href="index.php?page=login"><i class="bi bi-person-fill"></i></a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
                 </div>
             </div>
@@ -34,6 +34,23 @@
     <main>
         <?= $content ?>
     </main>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer style="text-align: center; padding: 50px;background: #111;color: white;">
         <p style="text-align: center;">Copyrights <a href="#" style="color: #f63e4e;font-weight: bold;text-decoration: none;">Yeya Informatique</a></p>
     </footer>

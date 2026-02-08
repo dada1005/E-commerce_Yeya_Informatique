@@ -25,8 +25,8 @@
         $db = getConnexion();
         $req = $db->prepare("INSERT INTO produit (nomProduit, description, prix, image, idCategorie)
         VALUES (?, ?, ?, ?, ?)");
-        $req->execute([$nomProduit, $description, $prix, $image, $idCategorie]);
-        return $db->lastInsertId();
+        return $req->execute([$nomProduit, $description, $prix, $image, $idCategorie]);
+        
     }
 
     //----- Récupérer tous les produits par catégorie -----

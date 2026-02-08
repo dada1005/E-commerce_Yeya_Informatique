@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$page = $_GET['page'] ?? 'gabarit';
+$page = $_GET['page'] ?? 'home';
 
 switch ($page) {
 
@@ -49,9 +49,48 @@ switch ($page) {
         require_once "Controller/controllerPanier.php";
         viderPanier();
         break;
+    case 'commande':
+        require_once "Controller/controllerCommande.php";
+        afficherCommande();
+        break;
+
+    case 'confirmerCommande':
+        require_once "Controller/controllerCommande.php";
+        confirmerCommande();
+        break;
+    case 'login':
+        require_once "Controller/controllerClient.php";
+        afficherLogin();
+        break;
+
+    case 'connecter':
+        require_once "Controller/controllerClient.php";
+        connecterClient();
+        break;
+
+    case 'logout':
+        require_once "Controller/controllerClient.php";
+        deconnexion();
+        break;
+    case 'inscription':
+        require_once "Controller/controllerClient.php";
+        afficherInscription();
+        break;
+
+    case 'inscrire':
+        require_once "Controller/controllerClient.php";
+        inscrireClient();
+        break;
+    case 'confirmation':
+        require "Vues/VueUser/confirmation.php";
+        break;
+
+    case 'mesCommandes':
+        require_once "Controller/controllerCommande.php";
+        mesCommandes();
+        break;
+
 
     default:
         echo "Page introuvable";
 }
-
-?>
