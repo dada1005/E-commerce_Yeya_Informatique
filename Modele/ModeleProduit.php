@@ -38,6 +38,7 @@
     //     return $sql->fetchAll(PDO::FETCH_ASSOC);
     // }
 
+
     //---- Récupérer un produit par ID ----
      function getProduitById($id)
 {

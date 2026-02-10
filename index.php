@@ -67,6 +67,10 @@ switch ($page) {
         require_once "Controller/controllerClient.php";
         connecterClient();
         break;
+    case 'confirmation':
+        require_once "Vues/VueUser/confirmation.php";
+
+        break;
 
     case 'logout':
         require_once "Controller/controllerClient.php";
@@ -81,15 +85,24 @@ switch ($page) {
         require_once "Controller/controllerClient.php";
         inscrireClient();
         break;
-    case 'confirmation':
-        require "Vues/VueUser/confirmation.php";
+    case 'monCompte':
+        require_once "Controller/controllerClient.php";
+        monCompte();
+        break;
+    case 'modifierCompte':
+        require_once "Controller/controllerClient.php";
+        modifierCompte();
+        break;
+
+    case 'updateCompte':
+        require_once "Controller/controllerClient.php";
+        updateCompte();
         break;
 
     case 'mesCommandes':
         require_once "Controller/controllerCommande.php";
         mesCommandes();
         break;
-
 
     default:
         echo "Page introuvable";

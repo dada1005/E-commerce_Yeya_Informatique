@@ -1,11 +1,8 @@
-<div class="container my-5">
-    <h2 class="text-success">Commande confirmée !</h2>
+<div class="container my-5 text-center">
+    <h2 class="text-success mb-4">Merci pour votre commande !</h2>
+    <p>Votre commande a été enregistrée avec succès.</p>
 
-    <p>Merci pour votre achat.</p>
-
-    <?php if (isset($_GET['idCommande'])): ?>
-        <p>Numéro de commande : <strong><?= htmlspecialchars($_GET['idCommande']) ?></strong></p>
-    <?php endif; ?>
-
-    <a href="index.php?page=catalogue" class="btn btn-primary mt-3">Retour au catalogue</a>
+    <a href="index.php?page=home" class="btn btn-primary mt-3">
+        Retour à l'accueil
+    </a>
 </div>

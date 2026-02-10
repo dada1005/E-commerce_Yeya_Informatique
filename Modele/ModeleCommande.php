@@ -27,14 +27,14 @@ function creerCommande($totalCommande, $idClient)
     $bd = getConnexion();
 
     // Générer la date actuelle
-    $dateCommande = date("Y-m-d H:i:s");
+    // $dateCommande = date("Y-m-d H:i:s");
 
     $req = $bd->prepare("
         INSERT INTO commande (dateCommande, totalCommande, idClient)
-        VALUES (?, ?, ?)
+        VALUES (now(), ?, ?)
     ");
 
-    $req->execute([$dateCommande, $totalCommande, $idClient]);
+    $req->execute([$totalCommande, $idClient]);
 
     // Retourner l'id de la commande créée
     return $bd->lastInsertId();
@@ -66,6 +66,45 @@ function getCommandesByClient($idClient)
     $req->execute([$idClient]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+function getCommandeById($idCommande)
+{
+    $pdo = getConnexion();
+
+    // Récupérer la commande
+    $sql = "SELECT * FROM commande WHERE idCommande = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idCommande]);
+    $commande = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$commande) {
+        return null;
+    }
+
+    // Récupérer les lignes de commande + infos produit
+    $sql2 = "SELECT *, p.nomProduit, p.image, p.description 
+             FROM ligne_commandes lc
+             JOIN produit p ON lc.idProduit = p.idProduit
+             WHERE lc.idCommande = ?";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->execute([$idCommande]);
+    $lignes = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+    $commande['lignes'] = $lignes;
+
+    return $commande;
+}
+function getClientById($idClient)
+{
+    $pdo = getConnexion();
+    $sql = "SELECT * FROM client WHERE idClient = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idClient]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
 
 
 

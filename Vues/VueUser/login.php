@@ -1,8 +1,13 @@
 <div class="container my-5" style="max-width: 500px;
     min-height: 100vh; align-items: center">
-
-    <form action="index.php?page=connecter" method="POST" 
-          style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
+    <?php if (!empty($_SESSION['message'])): ?>
+        <div class="alert alert-danger text-center">
+            <?= $_SESSION['message'];
+            unset($_SESSION['message']); ?>
+        </div>
+    <?php endif; ?>
+    <form action="index.php?page=connecter" method="POST"
+        style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
           box-shadow: 2px 2px 25px black; background-color: rgba(245, 245, 245, 0.86);
           border-radius: 5px;">
 
@@ -23,8 +28,8 @@
 
         <!--  Bouton pour aller vers l'inscription -->
         <div class="text-center mt-3">
-            <a href="index.php?page=inscription" 
-               class="btn btn-primary w-100">
+            <a href="index.php?page=inscription"
+                class="btn btn-primary w-100">
                 Créer un compte
             </a>
         </div>

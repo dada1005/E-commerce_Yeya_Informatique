@@ -2,7 +2,6 @@
 require_once(__DIR__ . "/../Modele/modeleCommande.php");
 
 
-
 function confirmerCommande()
 {
     // Vérifier si l'utilisateur est connecté
@@ -38,6 +37,10 @@ function confirmerCommande()
 
     // 3. Vider le panier
     unset($_SESSION['panier']);
+
+    // 4. Envoyer un email de confirmation
+    envoyerEmailConfirmation($idCommande, $total, $idClient);
+
 
     // 4. Redirection vers la page confirmation
     header("Location: index.php?page=confirmation&idCommande=" . $idCommande);
@@ -113,4 +116,47 @@ function mesCommandes()
     require "Vues/gabarit.php";
 }
 
-?>
+// function confirmation(){
+//     $idCommande = $_GET['idCommande'] ?? $_SESSION['last_order_id'] ?? null;
+
+// if (!$idCommande) {
+//     echo "Aucune commande à afficher.";
+//     exit;
+// }
+
+// $commande = getCommandeById($idCommande);
+
+// }
+
+
+
+function envoyerEmailConfirmation($idCommande, $total, $idClient)
+{
+    // Récupérer les infos du client
+    $client = getClientById($idClient); // tu dois déjà avoir cette fonction
+    $email = $client['email'];
+    $nom = $client['nom'];
+
+    $sujet = "Confirmation de votre commande #$idCommande";
+
+    $message = "
+        Bonjour $nom,
+
+        Merci pour votre commande !
+
+        Numéro de commande : $idCommande
+        Montant total : " . number_format($total, 2) . " €
+
+        Votre commande est en cours de traitement.
+        Vous pouvez la consulter à tout moment dans votre espace client.
+
+        Cordialement,
+        Votre boutique
+    ";
+
+    $headers = "From: noreply@votresite.com\r\n";
+    $headers .= "Reply-To: contact@votresite.com\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    mail($email, $sujet, $message, $headers);
+}

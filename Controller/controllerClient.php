@@ -12,14 +12,14 @@ function afficherLogin()
 
 function connecterClient()
 {
-    if (!isset($_POST['mailClient'], $_POST['mdpClient'])) {
+    if (!isset($_POST['email'], $_POST['motdepasse'])) {
         $_SESSION['message'] = "Veuillez remplir tous les champs.";
         header("Location: index.php?page=login");
         exit;
     }
 
-    $mail = $_POST['mailClient'];
-    $mdp = $_POST['mdpClient'];
+    $mail = $_POST['email'];
+    $mdp = $_POST['motdepasse'];
 
     $client = getClientByEmail($mail);
 
@@ -30,7 +30,7 @@ function connecterClient()
     }
 
     if (!password_verify($mdp, $client['mdpClient'])) {
-        $_SESSION['message'] = "Mot de passe incorrect.";
+        $_SESSION['message'] = "Email ou mot de passe incorrect.";
         header("Location: index.php?page=login");
         exit;
     }
@@ -40,9 +40,9 @@ function connecterClient()
 
     // Si une redirection était prévue (ex: confirmerCommande)
     if (isset($_SESSION['redirect_after_login'])) {
-        $url = $_SESSION['redirect_after_login'];
+        $page = $_SESSION['redirect_after_login'];
         unset($_SESSION['redirect_after_login']);
-        header("Location: $url");
+        header("Location: $page");
         exit;
     }
 
@@ -52,14 +52,15 @@ function connecterClient()
 }
 
 
-
-
+// se déconnecter
 function deconnexion()
 {
     unset($_SESSION['user']);
+    $_SESSION['message'] = "Vous êtes maintenant déconnecté.";
     header("Location: index.php?page=home");
     exit;
 }
+
 
 
 function afficherInscription()
@@ -71,6 +72,7 @@ function afficherInscription()
     require "Vues/gabarit.php";
 }
 
+// créer un compte
 function inscrireClient()
 {
     $nom = $_POST['nom'] ?? '';
@@ -84,6 +86,7 @@ function inscrireClient()
         exit;
     }
 
+
     // Créer le client
     creerClient($nom, $email, $mdp);
 
@@ -92,3 +95,68 @@ function inscrireClient()
     exit;
 }
 
+// créer la gestion de compte
+function monCompte()
+{
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['redirect_after_login'] = "index.php?page=monCompte";
+        header("Location: index.php?page=modifierCompte");
+
+        exit;
+    }
+
+    $title = "Mon compte";
+    ob_start();
+    require "Vues/VueUser/monCompte.php";
+    $content = ob_get_clean();
+    require "Vues/gabarit.php";
+}
+
+// modifier un compte
+function modifierCompte()
+{
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['redirect_after_login'] = "index.php?page=modifierCompte";
+        header("Location: index.php?page=login");
+        exit;
+    }
+
+
+    $title = "Modifier mes informations";
+    ob_start();
+    require "Vues/VueUser/modifierCompte.php";
+    $content = ob_get_clean();
+    require "Vues/gabarit.php";
+}
+function updateCompte()
+{
+    if (!isset($_SESSION['user'])) {
+        header("Location: index.php?page=login");
+        exit;
+    }
+
+    $nom = $_POST['nomClient'];
+    $email = $_POST['mailClient'];
+    $id = $_SESSION['user']['idClient'];
+
+    // Vérifier si email déjà utilisé par un autre client
+    $existant = getClientByEmail($email);
+    if ($existant && $existant['idClient'] != $id) {
+        $_SESSION['message'] = "Cet email est déjà utilisé.";
+        header("Location: index.php?page=modifierCompte");
+        exit;
+    }
+
+    updateClient($id, $nom, $email);
+
+    // Mettre à jour la session
+    $_SESSION['user']['nomClient'] = $nom;
+    $_SESSION['user']['mailClient'] = $email;
+
+    $_SESSION['message'] = "Informations mises à jour.";
+    header("Location: index.php?page=monCompte");
+    exit;
+}
+
+
+?>

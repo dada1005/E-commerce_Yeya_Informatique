@@ -6,8 +6,13 @@
                 Retour au catalogue
             </a>
         </p>
-
     <?php else: ?>
+        <?php if (!empty($_SESSION['message'])): ?>
+        <div class="alert alert-danger text-center">
+            <?= $_SESSION['message'];
+            unset($_SESSION['message']); ?>
+        </div>
+    <?php endif; ?>
         <table class="table table-bordered">
             <thead>
                 <tr style="color: black; font-weight: bold;">
@@ -52,7 +57,7 @@
                         <td data-label="Supprimer">
                             <a href="index.php?page=supprimer&id=<?= $p['idProduit'] ?>"
                                 class="btn btn-danger btn-sm">
-                                Supprimer
+                              <i class="bi bi-trash"></i>
                             </a>
                         </td>
                     </tr>

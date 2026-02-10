@@ -39,6 +39,7 @@ function ajouterAuPanier()
 
 
 
+
 function afficherPanier()
 {
     if (!isset($_SESSION['panier']) || !is_array($_SESSION['panier'])) {

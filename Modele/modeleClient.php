@@ -27,3 +27,20 @@ function creerClient($nomClient, $mailClient, $mdpClient)
     $req = $bd->prepare("INSERT INTO client (nomClient, mailClient, mdpClient) VALUES (?, ?, ?)");
     return $req->execute([$nomClient, $mailClient, $hash]);
 }
+function updateClient($idClient, $nomClient, $mailClient)
+{
+    $bd = getConnexion();
+    $req = $bd->prepare("UPDATE client SET nomClient = ?, mailClient = ? WHERE idClient = ?");
+    return $req->execute([$nomClient, $mailClient, $idClient]);
+}
+
+
+function getClientById($idClient)
+{
+    $pdo = getConnexion();
+    $sql = "SELECT * FROM client WHERE idClient = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idClient]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
