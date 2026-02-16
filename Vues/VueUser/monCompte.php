@@ -5,5 +5,10 @@
     <p><strong>Email :</strong> <?= $_SESSION['user']['mailClient'] ?></p>
 
     <a href="index.php?page=modifierCompte" class="btn btn-primary mt-3">Modifier mes informations</a>
-    <a href="index.php?page=modifierMdp" class="btn btn-warning mt-3">Modifier mon mot de passe</a>
 </div>
+<?php if (!empty($_SESSION['message'])): ?>
+    <div class="alert alert-success text-center">
+        <?= $_SESSION['message'];
+        unset($_SESSION['message']); ?>
+    </div>
+<?php endif; ?>

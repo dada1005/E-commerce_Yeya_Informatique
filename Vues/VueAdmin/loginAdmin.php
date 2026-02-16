@@ -6,7 +6,7 @@
             unset($_SESSION['message']); ?>
         </div>
     <?php endif; ?>
-    <form action="index.php?page=connecterClient" method="POST"
+    <form action="index.php?page=connecterAdmin" method="POST"
         style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
       box-shadow: 2px 2px 25px black; background-color: rgba(245, 245, 245, 0.86);
       border-radius: 5px;">
@@ -15,15 +15,15 @@
 
         <div class="mb-3">
             <label style="font-size: 1.2em; font-weight: bold; color: black;">Email</label>
-            <input type="email" name="mailClient" class="form-control" required>
+            <input type="email" name="mailAdmin" class="form-control" required>
         </div>
 
         <div class="mb-3">
             <label style="font-size: 1.2em; font-weight: bold; color: black;">Mot de passe</label>
-            <input type="password" name="mdpClient" class="form-control" required>
+            <input type="password" name="mdpAdmin" class="form-control" required>
         </div>
 
-        <button class="btn btn-primary w-100">Se connecter</button>
+        <button class="btn btn-primary w-100">connexion</button>
 
         <p style="text-align: center;">ou</p>
 

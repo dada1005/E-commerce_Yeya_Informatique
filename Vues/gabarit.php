@@ -20,24 +20,64 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-right" id="navbarNavAltMarkup">
-                <div class="navbar-nav ms-auto" style="color: white;font-size: 1.5rem;
-                text-decoration: none;">
-                    <a class="nav-link" staria-current="page" href="index.php?page=home">Accueil</a>
+                <div class="navbar-nav ms-auto" style="color: white;font-size: 1.5rem; text-decoration: none;">
+
+                    <a class="nav-link" href="index.php?page=home">Accueil</a>
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
-                    <a class="nav-link" href="index.php?page=mesCommandes">Mes commandes</a>
+
+                    <!-- CLIENT CONNECTÉ -->
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
+                        <a class="nav-link" href="index.php?page=mesCommandes">Mes commandes</a>
+
+                        <!-- ADMIN CONNECTÉ -->
+                    <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <a class="nav-link" href="index.php?page=admin">Administration</a>
+
+                        <!-- PERSONNE CONNECTÉE -->
+                    <?php else: ?>
+                        <a class="nav-link" href="index.php?page=login">Connexion</a>
+                    <?php endif; ?>
                 </div>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: white;font-size: 1.5rem; text-decoration: none;">
-                        Mon compte
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: white;font-size: 1.3rem;">
-                        <li><a class="dropdown-item" href="index.php?page=modifierCompte"><i class="bi bi-person-fill"></i></a>
-                        <li>
-                        <li><a class="dropdown-item" href="index.php?page=logout">Déconnexion</a></li>
-                    </ul>
+
+                    <!-- CLIENT CONNECTÉ -->
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                            Mon compte
+                        </button>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="index.php?page=modifierCompte" style="font-size: 1.3rem;">
+                                    <i class="bi bi-person-fill"></i> Profil
+                                </a></li>
+                            <li><a class="dropdown-item" href="index.php?page=logout" style="font-size: 1.3rem;">Déconnexion</a></li>
+                        </ul>
+
+                        <!-- ADMIN CONNECTÉ -->
+                    <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <button class="btn btn-danger dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                            Admin
+                        </button>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="index.php?page=admin" style="font-size: 1.3rem;">Tableau de bord</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=deconnexionAdmin" style="font-size: 1.3rem;">Déconnexion</a></li>
+
+                        </ul>
+
+                        <!-- PERSONNE CONNECTÉE -->
+                    <?php else: ?>
+                        <!-- Rien ici, car le bouton Connexion est déjà affiché -->
+                    <?php endif; ?>
+
                 </div>
+
+
             </div>
         </div>
     </nav>
@@ -47,31 +87,91 @@
 
 
 
-    <footer class="text-white mt-auto" style="background-color: #222; padding: 30px 0;">
-        <div class="container">
+    <footer class="footer">
 
-            <div class="row">
+    <style>
+        .footer {
+            background: #111;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
 
-                <div class="col-md-4 mb-3">
-                    <h4 class="fw-bold" style="color: red;">YEYA Informatique</h4>
-                    <p>Dépannage, vente de matériel informatique et services numériques.</p>
-                </div>
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold" style="color: red;">Contact</h5>
-                    <p>📍 Caudebec-lès-Elbeuf, Normandie</p>
-                    <p>📞 06 00 00 00 00</p>
-                    <p>✉️ contact@yeyainformatique.com</p>
-                </div>
+        .footer-section {
+            flex: 1 1 250px;
+        }
 
-            </div>
+        .footer-section h3,
+        .footer-section h4 {
+            color: #f63e4e;
+            margin-bottom: 10px;
+        }
 
-            <hr class="border-light">
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+        }
 
-            <p class="text-center mb-0">© <?= date('Y') ?> YEYA Informatique — Tous droits réservés</p>
+        .footer-section a:hover {
+            color: #f63e4e;
+        }
 
+        .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <div class="footer-container">
+
+        <div class="footer-section">
+            <h3>Yeya Informatique</h3>
+            <p>Dépannage & Vente Informatique</p>
         </div>
-    </footer>
+
+        <div class="footer-section">
+            <h4>Contact</h4>
+
+            <p><span class="icon">📞</span>0620534677 / 0232138553 / 0752386771</p>
+            <p><span class="icon">📧</span>contact@yeyainformatique.com</p>
+            <p><span class="icon">📍</span>183 Rue de la République, 76320, Caudebec lès Elbeuf, Normandie</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Liens utiles</h4>
+            <a href="index.php?page=home">Accueil</a><br>
+            <a href="index.php?page=catalogue">Catalogue</a>
+        </div>
+
+    </div>
+
+    <p class="footer-bottom">© 2026 Yeya Informatique — Tous droits réservés</p>
+</footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

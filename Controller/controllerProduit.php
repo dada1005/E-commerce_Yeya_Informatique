@@ -18,7 +18,7 @@ require_once(__DIR__ . "/../Modele/modeleProduit.php");
 
 
 
-//----- Page Produit -----
+//----- Page pour voir le  Produit avec sa description-----
 
     function afficherProduit()
 {

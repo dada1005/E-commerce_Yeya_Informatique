@@ -1,7 +1,7 @@
 <div class="container my-5" style="max-width: 500px;">
     <h2 class="mb-4 text-center">Créer un compte</h2>
 
-    <form action="index.php?page=inscrire" method="POST">
+    <form method="POST" action="index.php?page=inscriptionAdmin">
 
         <div class="mb-3">
             <label>Nom</label>

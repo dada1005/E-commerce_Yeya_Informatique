@@ -10,6 +10,7 @@
                     <th>ID Commande</th>
                     <th>Date</th>
                     <th>Total</th>
+                    <th>Détails</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                         <td><?= $c['idCommande'] ?></td>
                         <td><?= $c['dateCommande'] ?></td>
                         <td><?= $c['totalCommande'] ?> €</td>
+                        <td> <a href="index.php?page=commande_detail&id=<?= $c['idCommande'] ?>">Voir</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -1,16 +1,17 @@
 <?php
 
 function getConnexion()
-    {
-        $bdd = new PDO(
-            "mysql:host=localhost:3306;dbname=yeya_informatique;charset=utf8",
-            "root",
-            "",
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-        return $bdd;
-    }
+{
+    $bdd = new PDO(
+        "mysql:host=localhost:3306;dbname=yeya_informatique;charset=utf8",
+        "root",
+        "",
+        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+    );
+    return $bdd;
+}
 
+/* Récupérer un client par email */
 function getClientByEmail($mailClient)
 {
     $bd = getConnexion();
@@ -18,13 +19,16 @@ function getClientByEmail($mailClient)
     $req->execute([$mailClient]);
     return $req->fetch(PDO::FETCH_ASSOC);
 }
-
+/* Inscrire un client */
 function creerClient($nomClient, $mailClient, $mdpClient)
 {
     $bd = getConnexion();
     $hash = password_hash($mdpClient, PASSWORD_DEFAULT);
 
-    $req = $bd->prepare("INSERT INTO client (nomClient, mailClient, mdpClient) VALUES (?, ?, ?)");
+    $req = $bd->prepare("
+        INSERT INTO client (nomClient, mailClient, mdpClient, role)
+        VALUES (?, ?, ?, 'client')
+    ");
     return $req->execute([$nomClient, $mailClient, $hash]);
 }
 function updateClient($idClient, $nomClient, $mailClient)
@@ -34,13 +38,21 @@ function updateClient($idClient, $nomClient, $mailClient)
     return $req->execute([$nomClient, $mailClient, $idClient]);
 }
 
-
+/* Récupérer un client par ID */
 function getClientById($idClient)
 {
-    $pdo = getConnexion();
-    $sql = "SELECT * FROM client WHERE idClient = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idClient]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $bd = getConnexion();
+    $req = $bd->prepare("SELECT * FROM client WHERE idClient = ?");
+    $req->execute([$idClient]);
+    return $req->fetch(PDO::FETCH_ASSOC);
 }
 
+function getAdminByEmail($mailAdmin)
+{
+    $bd = getConnexion();
+    $req = $bd->prepare("SELECT * FROM admin WHERE mailAdmin = ?");
+    $req->execute([$mailAdmin]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
+
+?>

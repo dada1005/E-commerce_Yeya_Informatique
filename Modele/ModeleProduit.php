@@ -20,14 +20,14 @@
     }
 
     //---- Ajouter un produit ----
-    function addProduit($nomProduit, $description, $prix, $image, $idCategorie)
-    {
-        $db = getConnexion();
-        $req = $db->prepare("INSERT INTO produit (nomProduit, description, prix, image, idCategorie)
-        VALUES (?, ?, ?, ?, ?)");
-        return $req->execute([$nomProduit, $description, $prix, $image, $idCategorie]);
+    // function addProduit($nomProduit, $description, $prix, $image, $idCategorie)
+    // {
+    //     $db = getConnexion();
+    //     $req = $db->prepare("INSERT INTO produit (nomProduit, description, prix, image, idCategorie)
+    //     VALUES (?, ?, ?, ?, ?)");
+    //     return $req->execute([$nomProduit, $description, $prix, $image, $idCategorie]);
         
-    }
+    // }
 
     //----- Récupérer tous les produits par catégorie -----
     // function getProduitsByCategorie($idCategorie)

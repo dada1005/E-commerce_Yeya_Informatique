@@ -12,15 +12,13 @@ function afficherLogin()
 
 function connecterClient()
 {
-    if (!isset($_POST['email'], $_POST['motdepasse'])) {
+    if (!isset($_POST['mailClient'], $_POST['mdpClient'])) {
         $_SESSION['message'] = "Veuillez remplir tous les champs.";
         header("Location: index.php?page=login");
         exit;
     }
-
-    $mail = $_POST['email'];
-    $mdp = $_POST['motdepasse'];
-
+    $mail = $_POST['mailClient'];
+    $mdp = $_POST['mdpClient'];
     $client = getClientByEmail($mail);
 
     if (!$client) {
@@ -28,28 +26,30 @@ function connecterClient()
         header("Location: index.php?page=login");
         exit;
     }
-
     if (!password_verify($mdp, $client['mdpClient'])) {
         $_SESSION['message'] = "Email ou mot de passe incorrect.";
         header("Location: index.php?page=login");
         exit;
     }
-
     // Connexion OK
     $_SESSION['user'] = $client;
+    // Si c'est un admin → redirection vers dashboard 
+    if ($client['role'] === 'admin') {
+    header("Location: index.php?page=admin");
+    exit;
+}
 
-    // Si une redirection était prévue (ex: confirmerCommande)
+    // Redirection après login (ex: confirmerCommande) 
     if (isset($_SESSION['redirect_after_login'])) {
         $page = $_SESSION['redirect_after_login'];
         unset($_SESSION['redirect_after_login']);
         header("Location: $page");
         exit;
     }
-
-    // Sinon → page par défaut
     header("Location: index.php?page=home");
     exit;
 }
+
 
 
 // se déconnecter
@@ -157,6 +157,3 @@ function updateCompte()
     header("Location: index.php?page=monCompte");
     exit;
 }
-
-
-?>
