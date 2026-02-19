@@ -12,29 +12,26 @@
         return $bdd;
     }
 
-        //-----AFFICHER LE PANIER-----
 
     
+    function getProduitById($id)
+    {
+        $bd = getConnexion();
+        $req = $bd->prepare("SELECT * FROM produit WHERE idProduit = ?");
+        $req->execute([$id]);
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
 
-// function getProduitsByIds($ids) {
-//     $bd= getConnexion();
+    // function getProduitsByIds($ids) {
+    //     $bd= getConnexion();
 
-//     $in  = str_repeat('?,', count($ids) - 1) . '?';
-//     $sql = $bd->prepare("SELECT * FROM produit WHERE idProduit IN ($in)");
-//     $sql->execute($ids);
+    //     $in  = str_repeat('?,', count($ids) - 1) . '?';
+    //     $sql = $bd->prepare("SELECT * FROM produit WHERE idProduit IN ($in)");
+    //     $sql->execute($ids);
 
-//     return $sql->fetchAll(PDO::FETCH_ASSOC);
-// }
+    //     return $sql->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
-
-    
-function getProduitById($id)
-{
-    $bd = getConnexion();
-    $req = $bd->prepare("SELECT * FROM produit WHERE idProduit = ?");
-    $req->execute([$id]);
-    return $req->fetch(PDO::FETCH_ASSOC);
-}
 
 
     

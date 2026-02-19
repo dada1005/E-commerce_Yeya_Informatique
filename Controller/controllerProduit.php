@@ -3,24 +3,24 @@
 require_once(__DIR__ . "/../Modele/modeleProduit.php");
 
 //----- Page Catalogue -----
-    function afficherCatalogue()
-    {
-        $produits = getAllProduits();
+function afficherCatalogue()
+{
+    $produits = getAllProduits();
 
-        $title = "Catalogue";
+    $title = "Catalogue";
 
-        ob_start();
-        require "Vues/VueUser/catalogue.php";
-        $content = ob_get_clean();
+    ob_start();
+    require "Vues/VueUser/catalogue.php";
+    $content = ob_get_clean();
 
-        require "Vues/gabarit.php";
-    }
+    require "Vues/gabarit.php";
+}
 
 
 
 //----- Page pour voir le  Produit avec sa description-----
 
-    function afficherProduit()
+function afficherDetailsProduit()
 {
     $id = $_GET["id"] ?? 0;
     $produit = getProduitById($id);
@@ -35,19 +35,19 @@ require_once(__DIR__ . "/../Modele/modeleProduit.php");
 }
 
 
- //----- Page Accueil / Catégories -----
-    function afficherAccueil()
-    {
-        $categories = getAllCategories();
-        $produitsAccueil = getProduitsAccueil();
+//----- Page Accueil / Catégories -----
+function afficherAccueil()
+{
+    $categories = getAllCategories();
+    $produitsAccueil = getProduitsAccueil();
 
-        $title = "Accueil";
+    $title = "Accueil";
 
-        ob_start();
-        require "Vues/VueUser/home.php";
-        $content = ob_get_clean();
+    ob_start();
+    require "Vues/VueUser/home.php";
+    $content = ob_get_clean();
 
-        require "Vues/gabarit.php";
-    }
+    require "Vues/gabarit.php";
+}
 
 ?>

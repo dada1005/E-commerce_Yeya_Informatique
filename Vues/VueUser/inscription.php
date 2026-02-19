@@ -1,19 +1,22 @@
 <div class="container my-5" style="max-width: 500px;">
-    <h2 class="mb-4 text-center">Créer un compte</h2>
+    
+    <form action="index.php?page=inscrire" method="POST" style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
+      box-shadow: 2px 2px 25px black; background-color: rgba(245, 245, 245, 0.86);
+      border-radius: 5px;">
 
-    <form action="index.php?page=inscrire" method="POST">
+      <h2 class="mb-4 text-center">Créer un compte</h2>
 
         <div class="mb-3">
-            <label>Nom</label>
+            <label style="font-size: 1.2em; font-weight: bold; color: black;">Nom</label>
             <input type="text" name="nom" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Email</label>
+            <label style="font-size: 1.2em; font-weight: bold; color: black;">Email</label>
             <input type="email" name="email" class="form-control" required>
         </div>
        
         <div class="mb-3">
-            <label>Mot de passe</label>
+            <label  style="font-size: 1.2em; font-weight: bold; color: black;">Mot de passe</label>
             <input type="password" name="motdepasse" class="form-control" required>
         </div>
 

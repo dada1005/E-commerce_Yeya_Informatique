@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../Assets/style.css">
+    <link rel="stylesheet" href="Assets/style.css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse justify-content-right" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto" style="color: white;font-size: 1.5rem; text-decoration: none;">
 
-                    <a class="nav-link" href="index.php?page=home">Accueil</a>
+                    <a class="nav-link" href="index.php?page=home">Home</a>
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
 
@@ -76,8 +76,6 @@
                     <?php endif; ?>
 
                 </div>
-
-
             </div>
         </div>
     </nav>
@@ -88,64 +86,6 @@
 
 
     <footer class="footer">
-
-    <style>
-        .footer {
-            background: #111;
-            color: white;
-            padding: 40px 20px;
-            margin-top: 40px;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .footer-section {
-            flex: 1 1 250px;
-        }
-
-        .footer-section h3,
-        .footer-section h4 {
-            color: #f63e4e;
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
-            color: #ddd;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            color: #f63e4e;
-        }
-
-        .icon {
-            font-size: 18px;
-            margin-right: 8px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #aaa;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
-
     <div class="footer-container">
 
         <div class="footer-section">
@@ -163,7 +103,7 @@
 
         <div class="footer-section">
             <h4>Liens utiles</h4>
-            <a href="index.php?page=home">Accueil</a><br>
+            <a href="index.php?page=home">Home</a><br>
             <a href="index.php?page=catalogue">Catalogue</a>
         </div>
 

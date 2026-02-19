@@ -17,7 +17,7 @@ switch ($page) {
 
     case 'produit':
         require_once "Controller/controllerProduit.php";
-        afficherProduit();
+        afficherDetailsProduit();
         break;
 
     case 'panier':

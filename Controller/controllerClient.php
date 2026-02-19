@@ -35,9 +35,9 @@ function connecterClient()
     $_SESSION['user'] = $client;
     // Si c'est un admin → redirection vers dashboard 
     if ($client['role'] === 'admin') {
-    header("Location: index.php?page=admin");
-    exit;
-}
+        header("Location: index.php?page=admin");
+        exit;
+    }
 
     // Redirection après login (ex: confirmerCommande) 
     if (isset($_SESSION['redirect_after_login'])) {

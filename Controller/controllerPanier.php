@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../Modele/modelePanier.php");
 
 function ajouterAuPanier()
 {
+    // initialiser le panier
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = [];
     }
@@ -42,6 +43,7 @@ function ajouterAuPanier()
 
 function afficherPanier()
 {
+    // initialiser/ créer le panier
     if (!isset($_SESSION['panier']) || !is_array($_SESSION['panier'])) {
         $_SESSION['panier'] = [];
     }
@@ -49,18 +51,9 @@ function afficherPanier()
     $produits = [];
     $total = 0;
 
-    if (empty($_SESSION['panier'])) {
-        $title = "Panier";
-        ob_start();
-        require "Vues/VueUser/panier.php";
-        $content = ob_get_clean();
-        require "Vues/gabarit.php";
-        return;
-    }
-
     foreach ($_SESSION['panier'] as $idProduit => $item) {
 
-        // item doit être un tableau
+        // vérifier si les valeurs associées à l'id est bien dans un tableau
         if (!is_array($item)) {
             continue;
         }

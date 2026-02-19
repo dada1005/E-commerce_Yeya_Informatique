@@ -27,17 +27,12 @@
                     Ajouter au panier
                 </a>
 
-
                 <!-- Retour catalogue -->
                 <a href="index.php?page=catalogue"
                     class="btn btn-primary btn-sm">
                     Retour
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
