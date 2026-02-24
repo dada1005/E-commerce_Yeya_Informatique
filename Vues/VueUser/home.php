@@ -36,43 +36,34 @@
 <!-- SECTION : QUI SOMMES-NOUS -->
 <section class="container my-5">
     <h2 class="display-5 mb-4" style="color: red; text-align:center; font-weight: bold;">Qui sommes-nous ?</h2>
-    <p style="font-size: 1.5em; text-align: justify;">
+
+    <p id="texteYeya" class="texte-reduit" style="font-size: 1.5em; text-align: justify;">
         Yeya Informatique est une entreprise de dépannage et vente du matériel informatique située au 183 rue
-        République à Caudebec
-        lès
-        Elbeuf. Fondée il y a plusieurs années, elle est spécialisée dans les services de réparation, de vente
-        et
-        d’assistance informatique pour tous types d’appareils,
-        que ce soit pour les ordinateurs portables, les ordinateurs de bureau, les imprimantes, les tablettes,
-        les
-        accessoires et les smartphones. Elle offre également des services de création des sites internet,
-        montage
-        vidéo, récupération et protection des données, mise en place de réseau social, photocopie et impression,
-        nettoyage viral,
-        paramètre box/imprimante et de formation .<br> <br>
-        Yeya Informatique est dirigé par une équipe de techniciens hautement qualifiés et compétents, qui
-        possèdent
-        une solide expérience dans le domaine de la technologie informatique.
-        Les techniciens de Yeya Informatique sont en mesure de résoudre tous types de problèmes informatiques,
-        qu’il
-        s’agisse d’une panne de matériel, d’un virus ou d’un problème de connexion internet. L’équipe de Yeya
-        Informatique est également disponible pour fournir des conseils et des recommandations sur les
-        meilleures
-        pratiques pour la sécurité informatique et la sauvegarde des données. Ils sont passionnés par leur
-        métier et
-        sont toujours à l’écoute de leurs clients pour comprendre leurs besoins et leur fournir des solutions
-        adaptées.<br><br>
+        République à Caudebec lès Elbeuf. Fondée il y a plusieurs années, elle est spécialisée dans les services
+        de réparation, de vente et d’assistance informatique pour tous types d’appareils, que ce soit pour les
+        ordinateurs portables, les ordinateurs de bureau, les imprimantes, les tablettes, les accessoires et les
+        smartphones. Elle offre également des services de création des sites internet, montage vidéo, récupération
+        et protection des données, mise en place de réseau social, photocopie et impression, nettoyage viral,
+        paramètre box/imprimante et de formation.
+        <br><br>
+        Yeya Informatique est dirigé par une équipe de techniciens hautement qualifiés et compétents, qui possèdent
+        une solide expérience dans le domaine de la technologie informatique. Les techniciens de Yeya Informatique
+        sont en mesure de résoudre tous types de problèmes informatiques, qu’il s’agisse d’une panne de matériel,
+        d’un virus ou d’un problème de connexion internet. L’équipe est également disponible pour fournir des
+        conseils et des recommandations sur les meilleures pratiques pour la sécurité informatique et la sauvegarde
+        des données.
+        <br><br>
         Yeya Informatique est fier d’avoir acquis une solide réputation pour la qualité et la fiabilité de ses
-        services informatiques. Ils offrent des tarifs compétitifs et des délais rapides pour répondre aux
-        besoins
-        des clients. Si vous cherchez une entreprise de dépannage informatique fiable et professionnelle.
-        Yeya Informatique votre partenaire idéal.
+        services informatiques. Ils offrent des tarifs compétitifs et des délais rapides pour répondre aux besoins
+        des clients. Si vous cherchez une entreprise de dépannage informatique fiable et professionnelle,
+        Yeya Informatique est votre partenaire idéal.
     </p>
-    <a href="#" class="back-to-top" style="position: fixed;bottom: 20px;right: 20px;font-size: 3rem;color: red;
-    cursor: pointer;z-index: 999;transition: 0.3s;">
-        <i class="bi bi-arrow-up-circle-fill"></i>
+
+    <a id="toggleBtn" style="cursor:pointer; font-size:1.3rem; color:red; font-weight:bold;">
+        Lire la suite
     </a>
 </section>
+
 <!-- SECTION : CATÉGORIES -->
 <section class="container my-5">
     <h3 class="display-5 mb-3" style="color: red; font-weight: bold;">Catégories</h3>

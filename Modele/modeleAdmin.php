@@ -20,7 +20,7 @@ function inscrireAdmin($nom, $email, $password)
     // Hash du mot de passe
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = $bd->prepare("INSERT INTO client (nomClient, mailClient, password, role)
+    $sql = $bd->prepare("INSERT INTO client (nomClient, mailClient, mdpClient, role)
                          VALUES (?, ?, ?, 'admin')");
     return $sql->execute([$nom, $email, $passwordHash]);
 }
@@ -35,10 +35,13 @@ function getAllCategories()
 
 
 /* Récupérer tous les produits*/
-function getAllProduits()
-{
+function getAllProduits() {
     $bd = getConnexion();
-    $req = $bd->query("SELECT * FROM produit");
+    $req = $bd->query("
+        SELECT p.*, c.nomCategorie
+        FROM produit p
+        JOIN categorie c ON p.idCategorie = c.idCategorie
+    ");
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 

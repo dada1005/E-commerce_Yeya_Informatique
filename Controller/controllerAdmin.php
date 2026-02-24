@@ -168,7 +168,7 @@ function detailCommande()
 
     $id = $_GET['id'] ?? 0;
 
-    // APPEL DU BON MODELE
+    // récupère la commande par ID
     $commande = getCommandeById($id);
 
     if (!$commande) {

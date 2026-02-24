@@ -9,6 +9,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
@@ -80,43 +82,74 @@
         </div>
     </nav>
     <main>
-        
+
         <?= $content ?>
     </main>
 
 
 
     <footer class="footer">
-    <div class="footer-container">
+        <div class="footer-container">
 
-        <div class="footer-section">
-            <h3>Yeya Informatique</h3>
-            <p>Dépannage & Vente Informatique</p>
+            <div class="footer-section">
+                <h3>Yeya Informatique</h3>
+                <p>Dépannage & Vente Informatique</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+
+                <p><span class="icon">📞</span>0620534677 / 0232138553 / 0752386771</p>
+                <p><span class="icon">📧</span>contact@yeyainformatique.com</p>
+                <p><span class="icon">📍</span>183 Rue de la République, 76320, Caudebec lès Elbeuf, Normandie</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Liens utiles</h4>
+                <a href="index.php?page=home">Home</a><br>
+                <a href="index.php?page=catalogue">Catalogue</a>
+            </div>
+
         </div>
 
-        <div class="footer-section">
-            <h4>Contact</h4>
+        <p class="footer-bottom">© 2026 Yeya Informatique — Tous droits réservés</p>
+    </footer>
 
-            <p><span class="icon">📞</span>0620534677 / 0232138553 / 0752386771</p>
-            <p><span class="icon">📧</span>contact@yeyainformatique.com</p>
-            <p><span class="icon">📍</span>183 Rue de la République, 76320, Caudebec lès Elbeuf, Normandie</p>
-        </div>
 
-        <div class="footer-section">
-            <h4>Liens utiles</h4>
-            <a href="index.php?page=home">Home</a><br>
-            <a href="index.php?page=catalogue">Catalogue</a>
-        </div>
+    <script>
+        document.getElementById("toggleBtn").addEventListener("click", function() {
+            const texte = document.getElementById("texteYeya");
 
-    </div>
+            if (texte.classList.contains("texte-reduit")) {
+                texte.classList.remove("texte-reduit");
+                texte.classList.add("texte-complet");
+                this.textContent = "Lire moins";
+            } else {
+                texte.classList.remove("texte-complet");
+                texte.classList.add("texte-reduit");
+                this.textContent = "Lire la suite";
+            }
+        });
+    </script>
 
-    <p class="footer-bottom">© 2026 Yeya Informatique — Tous droits réservés</p>
-</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tableProduits').DataTable({
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json"
+                }
+            });
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

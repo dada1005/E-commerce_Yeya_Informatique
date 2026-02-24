@@ -21,13 +21,10 @@
 
 
 
-
+// créer une commande
     function creerCommande($totalCommande, $idClient)
     {
         $bd = getConnexion();
-
-        // Générer la date actuelle
-        // $dateCommande = date("Y-m-d H:i:s");
 
         $req = $bd->prepare("
             INSERT INTO commande (dateCommande, totalCommande, idClient)
@@ -40,8 +37,7 @@
         return $bd->lastInsertId();
     }
 
-
-
+// ajouter une ligne de commande
     function ajouterLigneCommande($idCommande, $idProduit, $quantite, $prix_unitaire)
     {
         $bd = getConnexion();
@@ -54,6 +50,7 @@
         $sql->execute([$quantite, $prix_unitaire, $idCommande, $idProduit]);
     }
 
+    // récupérer toutes les commandes par id du client
     function getCommandesByClient($idClient)
     {
         $bd = getConnexion();

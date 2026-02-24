@@ -84,7 +84,7 @@ function afficherPanier()
     require "Vues/gabarit.php";
 }
 
-
+// supprimer un produit specifique dans le panier
 function supprimerProduit()
 {
     $id = $_GET['id'];
@@ -114,6 +114,8 @@ function viderPanier()
     unset($_SESSION['panier']); // supprime tout le panier
     header("Location: index.php?page=panier");
     exit;
+
+    
      $title = "panier";
 
     ob_start();

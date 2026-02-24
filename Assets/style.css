@@ -85,3 +85,12 @@ h2 {
         text-align: center;
     }
 }
+.texte-reduit {
+    max-height: 180px; /* hauteur visible */
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.texte-complet {
+    max-height: 2000px; /* assez grand pour tout afficher */
+}

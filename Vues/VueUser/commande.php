@@ -7,7 +7,7 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             <?php foreach ($produits as $p): ?>
                 <tr>
                     <td><?= $p['nomProduit'] ?></td>
