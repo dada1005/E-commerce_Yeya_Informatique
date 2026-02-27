@@ -16,9 +16,9 @@
     <?php if (!empty($commande['lignes'])): ?>
         <?php foreach ($commande['lignes'] as $l): ?>
             <tr>
-                <td><?= $l['nomProduit'] ?></td>
-                <td><?= $l['quantite'] ?></td>
-                <td><?= $l['prix_unitaire'] ?> €</td>
+                <td><?= htmlspecialchars($l['nomProduit']) ?></td>
+                <td><?= htmlspecialchars($l['quantite']) ?></td>
+                <td><?= number_format($l['prix_unitaire']) ?> €</td>
             </tr>
         <?php endforeach; ?>
     <?php else: ?>

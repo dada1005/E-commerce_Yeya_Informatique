@@ -195,4 +195,18 @@ function deconnexion()
     exit;
 }
 
+// afficher la liste des clients
+
+function afficherClients() {
+    $clients = getAllClients();
+
+     $title = "liste des clients";
+    ob_start();
+    require "Vues/VueAdmin/clients.php";
+    $content = ob_get_clean();
+    require "Vues/gabarit.php";
+}
+?>
+
+
 

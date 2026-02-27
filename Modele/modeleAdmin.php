@@ -85,13 +85,18 @@ function supprimerProduit($idProduit)
     return $req->execute([$idProduit]);
 }
 /* Récupérer tous les commandes*/
-function getAllCommandes()
-{
-    $bd = getConnexion();
-    $req = $bd->query("SELECT c.*, cl.nomClient, cl.mailClient FROM commande c 
-    JOIN client cl ON c.idClient = cl.idClient ORDER BY c.dateCommande ASC");
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+function getAllCommandes() {
+    $pdo = getConnexion();
+    $sql = "SELECT c.idCommande, c.dateCommande, c.totalCommande, cl.nomClient
+            FROM commande c
+            INNER JOIN client cl ON c.idClient = cl.idClient
+            ORDER BY c.idCommande DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 
 /*Récupérer les commandes par ID*/
 
@@ -129,3 +134,15 @@ function getCommandeById($idCommande)
     //     $sql->execute([$idCommande]);
         
     // }
+
+
+function getAllClients() {
+    $pdo = getConnexion();
+    $sql = "SELECT idClient, nomClient, mailClient
+            FROM client 
+            ORDER BY idClient DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+?>

@@ -139,11 +139,10 @@ switch ($page) {
         detailCommande();
         break;
 
-    // case "adminClients":
-    //     require_once "Controller/controllerAdmin.php";
-    //     adminClients();
-    //     break;
-
+    case 'adminClients':
+        require_once "Controller/controllerAdmin.php";
+        afficherClients();
+        break;
     case 'deconnexionAdmin':
         require_once "Controller/controllerAdmin.php";
         deconnexion();

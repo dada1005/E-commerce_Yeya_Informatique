@@ -55,9 +55,9 @@
     {
         $bd = getConnexion();
         $req = $bd->prepare("
-            SELECT idCommande, totalCommande, dateCommande
-            FROM commande
-            WHERE idClient = ?
+            SELECT c.idCommande, totalCommande, dateCommande, cl.nomClient
+            FROM commande c inner join client cl on c.idClient = cl.idClient
+            WHERE c.idClient = ?
             ORDER BY dateCommande DESC
         ");
         $req->execute([$idClient]);

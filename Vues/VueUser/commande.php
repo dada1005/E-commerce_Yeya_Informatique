@@ -10,15 +10,15 @@
         <tbody >
             <?php foreach ($produits as $p): ?>
                 <tr>
-                    <td><?= $p['nomProduit'] ?></td>
-                    <td><?= $p['quantite'] ?></td>
-                    <td><?= $p['total_ligne'] ?> €</td>
+                    <td><?= htmlspecialchars($p['nomProduit']) ?></td>
+                    <td><?= number_format($p['quantite']) ?></td>
+                    <td><?= number_format($p['total_ligne']) ?> €</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <h3 class="text-danger">Total : <?= $total ?> €</h3>
+    <h3 class="text-danger">Total : <?= number_format($total) ?> €</h3>
 
     <a href="index.php?page=confirmerCommande" class="btn btn-success">Confirmer la commande</a>
 

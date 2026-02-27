@@ -17,11 +17,11 @@
             <tbody>
                 <?php foreach ($commandes as $c): ?>
                     <tr>
-                        <td><?= $c['idCommande'] ?></td>
-                        <td><?= $c['nomClient'] ?></td>
+                        <td><?= htmlspecialchars($c['idCommande']) ?></td>
+                        <td><?= htmlspecialchars($c['nomClient']) ?></td>
                         <td><?= $c['dateCommande'] ?></td>
-                        <td><?= $c['totalCommande'] ?> €</td>
-                        <td> <a href="index.php?page=commande_detail&id=<?= $c['idCommande'] ?>">Voir</a></td>
+                        <td><?= number_format($c['totalCommande']) ?> €</td>
+                        <td> <a href="index.php?page=commande_detail&id=<?= htmlspecialchars($c['idCommande']) ?>">Voir</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

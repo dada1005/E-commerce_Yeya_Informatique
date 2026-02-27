@@ -13,16 +13,16 @@
         <!-- Infos du produit -->
         <div class="col-12 col-md-6">
 
-            <h2 class="mb-3"><?= $produit['nomProduit'] ?></h2>
+            <h2 class="mb-3"><?= htmlspecialchars($produit['nomProduit']) ?></h2>
 
-            <p class="text-muted"><?= $produit['description'] ?></p>
+            <p class="text-muted"><?= htmlspecialchars($produit['description']) ?></p>
 
-            <h4 class="text-danger fw-bold mb-4"><?= $produit['prix'] ?> €</h4>
+            <h4 class="text-danger fw-bold mb-4"><?= number_format($produit['prix'] , 2, ',', ' ') ?> €</h4>
 
             <div class="d-flex gap-3">
 
                 <!-- Ajouter au panier -->
-                <a href="index.php?page=ajouterPanier&id=<?= $produit['idProduit'] ?>"
+                <a href="index.php?page=ajouterPanier&id=<?= htmlspecialchars($produit['idProduit']) ?>"
                     class="btn btn-primary btn-sm">
                     Ajouter au panier
                 </a>
@@ -35,4 +35,5 @@
             </div>
         </div>
     </div>
+
 </section>

@@ -5,22 +5,22 @@
 
         <div class="mb-3">
             <label>Nom du produit</label>
-            <input type="text" name="nomProduit" class="form-control" value="<?= $produit['nomProduit'] ?>" required>
+            <input type="text" name="nomProduit" class="form-control" value="<?= htmlspecialchars($produit['nomProduit']) ?>" required>
         </div>
 
         <div class="mb-3">
             <label>Description</label>
-            <textarea name="description" class="form-control" required><?= $produit['description'] ?></textarea>
+            <textarea name="description" class="form-control" required><?= htmlspecialchars($produit['description']) ?></textarea>
         </div>
 
         <div class="mb-3">
             <label>Prix</label>
-            <input type="number" step="0.01" name="prix" class="form-control" value="<?= $produit['prix'] ?>" required>
+            <input type="number" step="0.01" name="prix" class="form-control" value="<?= number_format($produit['prix']) ?>" required>
         </div>
 
         <div class="mb-3">
             <label>Image actuelle</label><br>
-            <img src="Images/<?= $produit['image'] ?>" width="100">
+            <img src="Images/<?= htmlspecialchars($produit['image']) ?>" width="100">
         </div>
 
         <div class="mb-3">
@@ -32,9 +32,9 @@
             <label>Catégorie</label>
             <select name="idCategorie" class="form-control" required>
                 <?php foreach ($categories as $c): ?>
-                    <option value="<?= $c['idCategorie'] ?>" 
-                        <?= $c['idCategorie'] == $produit['idCategorie'] ? 'selected' : '' ?>>
-                        <?= $c['nomCategorie'] ?>
+                    <option value="<?= htmlspecialchars($c['idCategorie']) ?>" 
+                        <?= htmlspecialchars($c['idCategorie'] == $produit['idCategorie'] ? 'selected' : '') ?>>
+                        <?= htmlspecialchars($c['nomCategorie']) ?>
                     </option>
                 <?php endforeach; ?>
             </select>

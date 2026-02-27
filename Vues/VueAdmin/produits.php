@@ -27,14 +27,14 @@
             <?php foreach ($produits as $p): ?>
                 <tr>
                     <td><?= $p['idProduit'] ?></td>
-                    <td><img src="Images/<?= $p['image'] ?>" width="60"></td>
-                    <td><?= $p['nomProduit'] ?></td>
-                    <td><?= $p['description'] ?></td>
-                    <td><?= $p['nomCategorie'] ?></td>
-                    <td><?= $p['prix'] ?> €</td>
+                    <td><img src="Images/<?= htmlspecialchars($p['image'])?>" width="60"></td>
+                    <td><?= htmlspecialchars($p['nomProduit']) ?></td>
+                    <td><?= htmlspecialchars($p['description']) ?></td>
+                    <td><?= htmlspecialchars($p['nomCategorie']) ?></td>
+                    <td><?= number_format($p['prix'], 2, ',', ' ')?> €</td>
                     <td>
-                        <a href="index.php?page=adminModifierProduit&id=<?= $p['idProduit'] ?>" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="index.php?page=adminSupprimerProduit&id=<?= $p['idProduit'] ?>" class="btn btn-danger btn-sm"
+                        <a href="index.php?page=adminModifierProduit&id=<?= htmlspecialchars($p['idProduit']) ?>" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="index.php?page=adminSupprimerProduit&id=<?= htmlspecialchars($p['idProduit']) ?>" class="btn btn-danger btn-sm"
                             onclick="return confirm('Supprimer ce produit ?');">Supprimer</a>
                     </td>
                 </tr>
