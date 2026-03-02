@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../Modele/modeleClient.php");
 
+
 function afficherLogin()
 {
     $title = "Connexion";

@@ -3,6 +3,7 @@
 //require_once "Modele/modeleAdmin.php";
 require_once(__DIR__ . "/../Modele/modeleAdmin.php");
 
+
 /*Vérifier si le compte administrateur existe*/
 function verifierAdmin()
 {

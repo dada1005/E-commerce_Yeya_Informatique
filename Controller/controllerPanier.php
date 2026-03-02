@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../Modele/modelePanier.php");
 
 
+
 function ajouterAuPanier()
 {
     // initialiser le panier

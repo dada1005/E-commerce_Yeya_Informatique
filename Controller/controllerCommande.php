@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../Modele/modeleCommande.php");
 
 
+
 function confirmerCommande()
 {
     // Vérifier si l'utilisateur est connecté

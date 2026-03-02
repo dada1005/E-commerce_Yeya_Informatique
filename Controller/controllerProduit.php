@@ -18,14 +18,18 @@ function afficherCatalogue()
 
 
 
-//----- Page pour voir le  Produit avec sa description-----
+//----- Page pour voir le  Produit détaillé-----
+function afficherDetailsProduit() {
 
-function afficherDetailsProduit()
-{
-    $id = $_GET["id"] ?? 0;
+    if (!isset($_GET['id'])) {
+        header("Location: index.php?page=catalogue");
+        exit;
+    }
+
+    $id = $_GET['id']; // récupérer l'id dans l'url
     $produit = getProduitById($id);
 
-    $title = "Produit";
+    $title = $produit['nomProduit'];
 
     ob_start();
     require "Vues/VueUser/produit.php";
@@ -33,6 +37,8 @@ function afficherDetailsProduit()
 
     require "Vues/gabarit.php";
 }
+
+
 
 
 //----- Page Accueil / Catégories -----
