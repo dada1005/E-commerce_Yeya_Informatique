@@ -78,13 +78,13 @@ h2 {
     color: #aaa;
 }
 
-/* Responsive */
+/* Responsive
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
         text-align: center;
     }
-}
+} */
 .texte-reduit {
     max-height: 180px; /* hauteur visible */
     overflow: hidden;
