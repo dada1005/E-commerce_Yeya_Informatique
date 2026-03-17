@@ -28,11 +28,23 @@
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
 
-                    <!-- Si un client n'est connecté -->
-                    <?php if (!isset($_SESSION['client'])): ?>
+                    <?php if (!isset($_SESSION['client']) && !isset($_SESSION['admin'])): ?>
 
-                        <a class="nav-link" href="index.php?page=loginClient">Connexion client</a>
+                        <div class="dropdown">
+                            <button class="btn btn-danger dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" style="color:white;font-size:1.5rem;">
+                                Connexion
+                            </button>
 
+                            <ul class="dropdown-menu">
+                                <!-- Si un client est connecté -->
+
+                                <li><a class="dropdown-item" href="index.php?page=loginClient">Connexion Client</a></li>
+                                <li><a class="dropdown-item" href="index.php?page=loginAdmin">Connexion Admin</a></li>
+
+
+                            </ul>
+                        </div>
                     <?php endif; ?>
 
                     <!-- Si un client est connecté -->
@@ -56,11 +68,6 @@
 
 
                     <!-- Si un admin est connecté -->
-                    <?php if (!isset($_SESSION['admin'])): ?>
-
-                        <a class="nav-link" href="index.php?page=loginAdmin">Connexion Admin</a>
-
-                    <?php endif; ?>
 
                     <?php if (isset($_SESSION['admin'])): ?>
 
