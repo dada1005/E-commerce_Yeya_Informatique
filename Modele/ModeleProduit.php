@@ -60,7 +60,7 @@ function getProduitById($id)
 function getProduitsAccueil()
 {
     $db = getConnexion();
-    $sql = $db->query("SELECT * FROM produit ORDER BY idProduit ASC LIMIT 4");
+    $sql = $db->query("SELECT * FROM produit ORDER BY idProduit DESC LIMIT 4");
     return $sql->fetchAll(PDO::FETCH_ASSOC);
 }
 

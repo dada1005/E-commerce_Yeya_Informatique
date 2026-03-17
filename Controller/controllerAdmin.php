@@ -37,7 +37,7 @@ function connecterAdmin()
     $mdp = $_POST['mdpAdmin'];
 
     // Récupération de l'utilisateur dans la table users
-    $admin = getClientByEmail($mail); // même fonction que pour les clients
+    $admin = getAdminByEmail($mail); 
 
     if (!$admin) {
         $_SESSION['message'] = "Email introuvable.";
