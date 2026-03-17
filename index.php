@@ -58,7 +58,7 @@ switch ($page) {
         require_once "Controller/controllerCommande.php";
         confirmerCommande();
         break;
-    case 'loginClient':
+    case 'login':
         require_once "Controller/controllerClient.php";
         afficherLogin();
         break;
@@ -71,7 +71,7 @@ switch ($page) {
         require_once "Vues/VueUser/confirmation.php";
         break;
 
-    case 'logoutClient':
+    case 'logout':
         require_once "Controller/controllerClient.php";
         deconnexion();
         break;

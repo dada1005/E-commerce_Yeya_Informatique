@@ -18,12 +18,13 @@ function afficherLoginAdmin()
 /*Vérifier si le compte administrateur existe*/
 function verifierAdmin()
 {
-    if (!isset($_SESSION['admin'])) {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         $_SESSION['message'] = "Accès réservé aux administrateurs.";
-        header("Location: index.php?page=loginAdmin");
+        header("Location: index.php?page=login");
         exit;
     }
 }
+
 function connecterAdmin()
 {
     if (!isset($_POST['mailAdmin'], $_POST['mdpAdmin'])) {
@@ -35,21 +36,41 @@ function connecterAdmin()
     $mail = $_POST['mailAdmin'];
     $mdp = $_POST['mdpAdmin'];
 
-    $admin = getAdminByEmail($mail);
+    // Récupération de l'utilisateur dans la table users
+    $admin = getClientByEmail($mail); // même fonction que pour les clients
 
-    if (!password_verify($mdp, $admin['mdpAdmin'])) {
-        $_SESSION['message'] = "Identifiants incorrects.";
+    if (!$admin) {
+        $_SESSION['message'] = "Email introuvable.";
         header("Location: index.php?page=loginAdmin");
         exit;
     }
 
-    // connexion ok
+    // Vérification du mot de passe
+    if (!password_verify($mdp, $admin['mdpUsers'])) {
+        $_SESSION['message'] = "Mot de passe incorrect.";
+        header("Location: index.php?page=loginAdmin");
+        exit;
+    }
 
-    $_SESSION['admin'] = $admin;
+    // Vérification du rôle
+    if ($admin['role'] !== 'admin') {
+        $_SESSION['message'] = "Vous n'avez pas les droits administrateur.";
+        header("Location: index.php?page=loginAdmin");
+        exit;
+    }
+
+    // Connexion OK → on stocke dans la session
+    $_SESSION['user'] = [
+        'id'    => $admin['idUsers'],
+        'email' => $admin['mailUsers'],
+        'nom'   => $admin['nomUsers'],
+        'role'  => $admin['role']
+    ];
 
     header("Location: index.php?page=dashboard");
     exit;
 }
+
 
 
 /*Afficher le tableau de bord*/
@@ -68,19 +89,19 @@ function adminDashboard()
 
 function inscriptionAdmin()
 {
+    verifierAdmin(); // Seul un admin peut créer un autre admin
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $nom = $_POST['nom'];
         $email = $_POST['email'];
-        $password = $_POST['motdepasse'];
+        $password = $_POST['password'];
 
-        $role = "admin";
-
-        inscrireAdmin($nom, $email, $password);
+        // On force le rôle admin
+        inscrireAdmin($nom, $email, $password, 'admin');
 
         $_SESSION['message'] = "Administrateur créé avec succès.";
-        header("Location: index.php?page=loginAdmin");
+        header("Location: index.php?page=adminDashboard");
         exit;
     }
 
@@ -224,16 +245,15 @@ function detailCommande()
     require "Vues/gabarit.php";
 }
 
+
 function deconnexion()
 {
-    unset($_SESSION['admin']);
-    $_SESSION['message'] = "Vous êtes maintenant déconnecté.";
+    session_start();
+    session_unset();   // Supprime toutes les variables de session
     session_destroy(); // Détruit complètement la session
+
     header("Location: index.php?page=home");
-    exit;   // Supprime toutes les variables de session
-
-
-
+    exit;
 }
 
 // afficher la liste des clients

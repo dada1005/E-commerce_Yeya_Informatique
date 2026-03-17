@@ -5,15 +5,18 @@ require_once(__DIR__ . "/../Modele/modeleCommande.php");
 
 function confirmerCommande()
 {
-    // Vérifier si le client est connecté
-    if (!isset($_SESSION['client'])) {
+    // Vérifier si l'utilisateur est connecté ET est un client
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'client') {
         // On mémorise la page où il voulait aller
         $_SESSION['redirect_after_login'] = "index.php?page=confirmerCommande";
-        header("Location: index.php?page=loginClient");
+        header("Location: index.php?page=login");
         exit;
     }
 
-    $idClient = $_SESSION['client']['idClient'];
+    // Récupération de l'ID client
+    $idClient = $_SESSION['user']['id'];
+
+    // Récupération du panier
     $panier = $_SESSION['panier'] ?? [];
 
     if (empty($panier)) {
@@ -43,9 +46,6 @@ function confirmerCommande()
     header("Location: index.php?page=confirmation&idCommande=" . $idCommande);
     exit;
 }
-
-
-
 
 
 
@@ -96,19 +96,23 @@ function afficherCommande()
 
 function mesCommandes()
 {
-    if (!isset($_SESSION['client'])) {
+    // Vérifier si l'utilisateur est connecté ET est un client
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'client') {
         $_SESSION['redirect_after_login'] = "index.php?page=mesCommandes";
-        header("Location: index.php?page=loginClient");
+        header("Location: index.php?page=login");
         exit;
     }
 
-    $idClient = $_SESSION['client']['idClient'];
-    $commandes = getCommandesByClient($idClient);
+    // Récupérer l'ID du client connecté
+    $idClient = $_SESSION['user']['id'];
+
+    // Récupérer ses commandes
+    $commandes = getCommandesByid($idClient);
 
     $title = "Mes commandes";
 
     ob_start();
-    require "Vues/VueAdmin/mesCommandes.php";
+    require "Vues/vueAdmin/mesCommandes.php";
     $content = ob_get_clean();
 
     require "Vues/gabarit.php";

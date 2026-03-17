@@ -4,13 +4,13 @@
         <div class="mb-3">
             <label>Nom</label>
             <input type="text" name="nomClient" class="form-control"
-                   value="<?= $_SESSION['client']['nomClient'] ?>" required>
+                   value="<?= $_SESSION['user']['nom'] ?>" required>
         </div>
 
         <div class="mb-3">
             <label>Email</label>
             <input type="email" name="mailClient" class="form-control"
-                   value="<?= $_SESSION['client']['mailClient'] ?>" required>
+                   value="<?= $_SESSION['user']['email'] ?>" required>
         </div>
 
         <button class="btn btn-success">Enregistrer</button>

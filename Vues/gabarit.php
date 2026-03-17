@@ -28,63 +28,53 @@
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
 
-                    <?php if (!isset($_SESSION['client']) && !isset($_SESSION['admin'])): ?>
-
-                        <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" style="color:white;font-size:1.5rem;">
-                                Connexion
-                            </button>
-
-                            <ul class="dropdown-menu">
-                                <!-- Si un client est connecté -->
-
-                                <li><a class="dropdown-item" href="index.php?page=loginClient">Connexion Client</a></li>
-                                <li><a class="dropdown-item" href="index.php?page=loginAdmin">Connexion Admin</a></li>
-
-
-                            </ul>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Si un client est connecté -->
-                    <?php if (isset($_SESSION['client'])): ?>
-
+                    <!-- CLIENT CONNECTÉ -->
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
                         <a class="nav-link" href="index.php?page=mesCommandes">Mes commandes</a>
 
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" style="color:white;font-size:1.5rem;">
-                                Mon compte
-                            </button>
-
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?page=modifierCompte">Profil</a></li>
-                                <li><a class="dropdown-item" href="index.php?page=logoutClient">Déconnexion</a></li>
-                            </ul>
-                        </div>
-
-                    <?php endif; ?>
-
-
-                    <!-- Si un admin est connecté -->
-
-                    <?php if (isset($_SESSION['admin'])): ?>
-
+                        <!-- ADMIN CONNECTÉ -->
+                    <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                         <a class="nav-link" href="index.php?page=dashboard">Administration</a>
 
-                        <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" style="color:white;font-size:1.5rem;">
-                                Admin
-                            </button>
+                        <!-- PERSONNE CONNECTÉE -->
+                    <?php else: ?>
+                        <a class="nav-link" href="index.php?page=login">Connexion</a>
+                    <?php endif; ?>
+                </div>
+                <div class="dropdown">
 
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?page=dashboard">Tableau de bord</a></li>
-                                <li><a class="dropdown-item" href="index.php?page=logoutAdmin">Déconnexion</a></li>
-                            </ul>
-                        </div>
+                    <!-- CLIENT CONNECTÉ -->
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                            Mon compte
+                        </button>
 
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="index.php?page=modifierCompte" style="font-size: 1.3rem;">
+                                    <i class="bi bi-person-fill"></i> Profil
+                                </a></li>
+                            <li><a class="dropdown-item" href="index.php?page=logout" style="font-size: 1.3rem;">Déconnexion</a></li>
+                        </ul>
+
+                        <!-- ADMIN CONNECTÉ -->
+                    <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <button class="btn btn-danger dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                            Admin
+                        </button>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="index.php?page=dashboard" style="font-size: 1.3rem;">Tableau de bord</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=logoutAdmin" style="font-size: 1.3rem;">Déconnexion</a></li>
+
+                        </ul>
+
+                        <!-- PERSONNE CONNECTÉE -->
+                    <?php else: ?>
+                        <!-- Rien ici, car le bouton Connexion est déjà affiché -->
                     <?php endif; ?>
 
                 </div>
@@ -99,7 +89,7 @@
 
 
 
-
+    
     <footer class="footer">
         <div class="footer-container">
 

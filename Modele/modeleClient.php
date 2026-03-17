@@ -12,38 +12,38 @@ function getConnexion()
 }
 
 /* Récupérer un client par email */
-function getClientByEmail($mailClient)
+function getClientByEmail($mailUsers)
 {
     $bd = getConnexion();
-    $req = $bd->prepare("SELECT * FROM client WHERE mailClient = ?");
-    $req->execute([$mailClient]);
+    $req = $bd->prepare("SELECT * FROM users WHERE mailUsers = ?");
+    $req->execute([$mailUsers]);
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 /* Inscrire un client */
-function creerClient($nomClient, $mailClient, $mdpClient)
+function creerClient($nomUsers, $mailUsers, $mdpUsers)
 {
     $bd = getConnexion();
-    $hash = password_hash($mdpClient, PASSWORD_DEFAULT);
+    $hash = password_hash($mdpUsers, PASSWORD_DEFAULT);
 
     $req = $bd->prepare("
-        INSERT INTO client (nomClient, mailClient, mdpClient)
-        VALUES (?, ?, ?)
+        INSERT INTO users (nomUsers, mailUsers, mdpUsers, role)
+        VALUES (?, ?, ?, 'client')
     ");
-    return $req->execute([$nomClient, $mailClient, $hash]);
+    return $req->execute([$nomUsers, $mailUsers, $hash]);
 }
-function updateClient($idClient, $nomClient, $mailClient)
+function updateClient($idUsers, $nomUsers, $mailUsers)
 {
     $bd = getConnexion();
-    $req = $bd->prepare("UPDATE client SET nomClient = ?, mailClient = ? WHERE idClient = ?");
-    return $req->execute([$nomClient, $mailClient, $idClient]);
+    $req = $bd->prepare("UPDATE users SET nomUsers = ?, mailUsers = ? WHERE idUsers = ?");
+    return $req->execute([$nomUsers, $mailUsers, $idUsers]);
 }
 
 /* Récupérer un client par ID */
-function getClientById($idClient)
+function getClientById($idUsers)
 {
     $bd = getConnexion();
-    $req = $bd->prepare("SELECT * FROM client WHERE idClient = ?");
-    $req->execute([$idClient]);
+    $req = $bd->prepare("SELECT * FROM users WHERE idUsers = ?");
+    $req->execute([$idUsers]);
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 

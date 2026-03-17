@@ -22,22 +22,22 @@
 
 
 // créer une commande
-    function creerCommande($totalCommande, $idClient)
+    function creerCommande($totalCommande, $idUsers)
     {
         $bd = getConnexion();
 
         $req = $bd->prepare("
-            INSERT INTO commande (dateCommande, totalCommande, idClient)
+            INSERT INTO commande (dateCommande, totalCommande, idUsers)
             VALUES (now(), ?, ?)
         ");
 
-        $req->execute([$totalCommande, $idClient]);
+        $req->execute([$totalCommande, $idUsers]);
 
         // Retourner l'id de la commande créée
         return $bd->lastInsertId();
     }
 
-// ajouter une ligne de commande
+    // ajouter une ligne de commande
     function ajouterLigneCommande($idCommande, $idProduit, $quantite, $prix_unitaire)
     {
         $bd = getConnexion();
@@ -51,18 +51,20 @@
     }
 
     // récupérer toutes les commandes par id du client
-    function getCommandesByClient($idClient)
-    {
-        $bd = getConnexion();
-        $req = $bd->prepare("
-            SELECT c.idCommande, totalCommande, dateCommande, cl.nomClient
-            FROM commande c inner join client cl on c.idClient = cl.idClient
-            WHERE c.idClient = ?
-            ORDER BY dateCommande DESC
-        ");
-        $req->execute([$idClient]);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
+    function getCommandesById($idUsers)
+{
+    $bd = getConnexion();
+    $req = $bd->prepare("
+        SELECT c.idCommande, c.totalCommande, c.dateCommande, u.nomUsers
+        FROM commande c 
+        INNER JOIN users u ON c.idUsers = u.idUsers
+        WHERE c.idUsers = ?
+        ORDER BY c.dateCommande DESC
+    ");
+    $req->execute([$idUsers]);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
     function getCommandeById($idCommande)
@@ -92,11 +94,11 @@
 
         return $commande;
     }
-    function getClientById($idClient)
+    function getClientById($idUsers)
     {
         $pdo = getConnexion();
-        $sql = "SELECT * FROM client WHERE idClient = ?";
+        $sql = "SELECT * FROM users WHERE idUsers = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$idClient]);
+        $stmt->execute([$idUsers]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
