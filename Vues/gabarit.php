@@ -28,7 +28,6 @@
                     <a class="nav-link" href="index.php?page=catalogue">Catalogue</a>
                     <a class="nav-link" href="index.php?page=panier"><i class="bi bi-cart3"></i></a>
 
-
                     <!-- Si un client n'est connecté -->
                     <?php if (!isset($_SESSION['client'])): ?>
 
