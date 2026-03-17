@@ -11,7 +11,7 @@
       box-shadow: 2px 2px 25px black; background-color: rgba(245, 245, 245, 0.86);
       border-radius: 5px;">
 
-        <h2 class="mb-4 text-center" style="color: red;">Login</h2>
+        <h2 class="mb-4 text-center" style="color: red;">Login Administateur</h2>
 
         <div class="mb-3">
             <label style="font-size: 1.2em; font-weight: bold; color: black;">Email</label>
@@ -29,7 +29,7 @@
 
         <!--  Bouton pour aller vers l'inscription -->
         <div class="text-center mt-3">
-            <a href="index.php?page=inscription"
+            <a href="index.php?page=inscriptionAdmin"
                 class="btn btn-primary w-100">
                 Créer un compte
             </a>

@@ -5,15 +5,15 @@ require_once(__DIR__ . "/../Modele/modeleCommande.php");
 
 function confirmerCommande()
 {
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['user'])) {
+    // Vérifier si le client est connecté
+    if (!isset($_SESSION['client'])) {
         // On mémorise la page où il voulait aller
         $_SESSION['redirect_after_login'] = "index.php?page=confirmerCommande";
-        header("Location: index.php?page=login");
+        header("Location: index.php?page=loginClient");
         exit;
     }
 
-    $idClient = $_SESSION['user']['idClient'];
+    $idClient = $_SESSION['client']['idClient'];
     $panier = $_SESSION['panier'] ?? [];
 
     if (empty($panier)) {
@@ -43,6 +43,7 @@ function confirmerCommande()
     header("Location: index.php?page=confirmation&idCommande=" . $idCommande);
     exit;
 }
+
 
 
 
@@ -95,13 +96,13 @@ function afficherCommande()
 
 function mesCommandes()
 {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['client'])) {
         $_SESSION['redirect_after_login'] = "index.php?page=mesCommandes";
-        header("Location: index.php?page=login");
+        header("Location: index.php?page=loginClient");
         exit;
     }
 
-    $idClient = $_SESSION['user']['idClient'];
+    $idClient = $_SESSION['client']['idClient'];
     $commandes = getCommandesByClient($idClient);
 
     $title = "Mes commandes";

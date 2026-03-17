@@ -1,6 +1,6 @@
 <div class="container my-5" style="max-width: 500px;">
     
-    <form action="index.php?page=inscrire" method="POST" style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
+    <form action="index.php?page=inscriptionAdmin" method="POST" style="margin: 0 auto; max-width: 450px; width: 80%; padding: 20px;
       box-shadow: 2px 2px 25px black; background-color: rgba(245, 245, 245, 0.86);
       border-radius: 5px;">
 

@@ -4,15 +4,53 @@
 require_once(__DIR__ . "/../Modele/modeleAdmin.php");
 
 
+
+function afficherLoginAdmin()
+{
+    $title = "Connexion";
+    ob_start();
+    require "Vues/VueAdmin/loginAdmin.php";
+    $content = ob_get_clean();
+    require "Vues/gabarit.php";
+}
+
+
 /*Vérifier si le compte administrateur existe*/
 function verifierAdmin()
 {
-    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    if (!isset($_SESSION['admin'])) {
         $_SESSION['message'] = "Accès réservé aux administrateurs.";
-        header("Location: index.php?page=login");
+        header("Location: index.php?page=loginAdmin");
         exit;
     }
 }
+function connecterAdmin()
+{
+    if (!isset($_POST['mailAdmin'], $_POST['mdpAdmin'])) {
+        $_SESSION['message'] = "Veuillez remplir tous les champs.";
+        header("Location: index.php?page=loginAdmin");
+        exit;
+    }
+
+    $mail = $_POST['mailAdmin'];
+    $mdp = $_POST['mdpAdmin'];
+
+    $admin = getAdminByEmail($mail);
+
+    if (!password_verify($mdp, $admin['mdpAdmin'])) {
+        $_SESSION['message'] = "Identifiants incorrects.";
+        header("Location: index.php?page=loginAdmin");
+        exit;
+    }
+
+    // connexion ok
+
+    $_SESSION['admin'] = $admin;
+
+    header("Location: index.php?page=dashboard");
+    exit;
+}
+
 
 /*Afficher le tableau de bord*/
 function adminDashboard()
@@ -30,18 +68,19 @@ function adminDashboard()
 
 function inscriptionAdmin()
 {
-    verifierAdmin(); // Seul un admin peut créer un autre admin
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $nom = $_POST['nom'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = $_POST['motdepasse'];
+
+        $role = "admin";
 
         inscrireAdmin($nom, $email, $password);
 
         $_SESSION['message'] = "Administrateur créé avec succès.";
-        header("Location: index.php?page=adminDashboard");
+        header("Location: index.php?page=loginAdmin");
         exit;
     }
 
@@ -153,7 +192,7 @@ function adminSupprimerProduit()
 
 function adminCommandes()
 {
-     verifierAdmin();
+    verifierAdmin();
 
     $commandes = getAllCommandes();
 
@@ -183,31 +222,29 @@ function detailCommande()
     require "Vues/VueAdmin/detailsCommande.php";
     $content = ob_get_clean();
     require "Vues/gabarit.php";
-   
 }
 
 function deconnexion()
 {
-    session_start();
-    session_unset();   // Supprime toutes les variables de session
+    unset($_SESSION['admin']);
+    $_SESSION['message'] = "Vous êtes maintenant déconnecté.";
     session_destroy(); // Détruit complètement la session
-
     header("Location: index.php?page=home");
-    exit;
+    exit;   // Supprime toutes les variables de session
+
+
+
 }
 
 // afficher la liste des clients
 
-function afficherClients() {
+function afficherClients()
+{
     $clients = getAllClients();
 
-     $title = "liste des clients";
+    $title = "liste des clients";
     ob_start();
     require "Vues/VueAdmin/clients.php";
     $content = ob_get_clean();
     require "Vues/gabarit.php";
 }
-?>
-
-
-

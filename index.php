@@ -58,7 +58,7 @@ switch ($page) {
         require_once "Controller/controllerCommande.php";
         confirmerCommande();
         break;
-    case 'login':
+    case 'loginClient':
         require_once "Controller/controllerClient.php";
         afficherLogin();
         break;
@@ -69,10 +69,9 @@ switch ($page) {
         break;
     case 'confirmation':
         require_once "Vues/VueUser/confirmation.php";
-
         break;
 
-    case 'logout':
+    case 'logoutClient':
         require_once "Controller/controllerClient.php";
         deconnexion();
         break;
@@ -103,12 +102,20 @@ switch ($page) {
         require_once "Controller/controllerCommande.php";
         mesCommandes();
         break;
-
-    case "admin":
+    case 'loginAdmin':
+        require_once "Controller/controllerAdmin.php";
+        afficherLoginAdmin();
+        break;
+     case 'connecterAdmin':
+        require_once "Controller/controllerAdmin.php";
+        connecterAdmin();
+        break;
+    
+    case "dashboard":
         require_once "Controller/controllerAdmin.php";
         adminDashboard();
         break;
-    case "incriptionAdmin":
+    case "inscriptionAdmin":
         require_once "Controller/controllerAdmin.php";
         inscriptionAdmin();
         break;
@@ -143,13 +150,14 @@ switch ($page) {
         require_once "Controller/controllerAdmin.php";
         afficherClients();
         break;
-    case 'deconnexionAdmin':
+    case 'logoutAdmin':
         require_once "Controller/controllerAdmin.php";
         deconnexion();
         break;
 
 
-
     default:
         echo "Page introuvable";
+
+
 }

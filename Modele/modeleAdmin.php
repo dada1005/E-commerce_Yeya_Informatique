@@ -17,12 +17,22 @@ function inscrireAdmin($nom, $email, $password)
 {
     $bd = getConnexion();
 
-    // Hash du mot de passe
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = $bd->prepare("INSERT INTO client (nomClient, mailClient, mdpClient, role)
-                         VALUES (?, ?, ?, 'admin')");
+    $sql = $bd->prepare("
+        INSERT INTO admin (nomAdmin, mailAdmin, mdpAdmin, role)
+        VALUES (?, ?, ?, 'admin')
+    ");
+
     return $sql->execute([$nom, $email, $passwordHash]);
+}
+
+function getAdminByEmail($mailAdmin)
+{
+    $bd = getConnexion();
+    $req = $bd->prepare("SELECT * FROM admin WHERE mailAdmin = ?");
+    $req->execute([$mailAdmin]);
+    return $req->fetch(PDO::FETCH_ASSOC);
 }
 
 /*Récupérer toutes les catégories*/

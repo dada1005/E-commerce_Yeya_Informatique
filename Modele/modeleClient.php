@@ -26,8 +26,8 @@ function creerClient($nomClient, $mailClient, $mdpClient)
     $hash = password_hash($mdpClient, PASSWORD_DEFAULT);
 
     $req = $bd->prepare("
-        INSERT INTO client (nomClient, mailClient, mdpClient, role)
-        VALUES (?, ?, ?, 'client')
+        INSERT INTO client (nomClient, mailClient, mdpClient)
+        VALUES (?, ?, ?)
     ");
     return $req->execute([$nomClient, $mailClient, $hash]);
 }
@@ -47,12 +47,5 @@ function getClientById($idClient)
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function getAdminByEmail($mailAdmin)
-{
-    $bd = getConnexion();
-    $req = $bd->prepare("SELECT * FROM admin WHERE mailAdmin = ?");
-    $req->execute([$mailAdmin]);
-    return $req->fetch(PDO::FETCH_ASSOC);
-}
 
 ?>
