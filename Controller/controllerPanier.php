@@ -92,19 +92,12 @@ function supprimerProduit()
 
     if (isset($_SESSION['panier'][$id])) {
         unset($_SESSION['panier'][$id]);
+       
     }
-
+    $_SESSION['message'] = "Produit supprimé du panier.";
     header("Location: index.php?page=panier");
-    exit;
+     exit;
 
-
-    $title = "panier";
-
-    ob_start();
-    require "Vues/VueUser/panier.php";
-    $content = ob_get_clean();
-
-    require "Vues/gabarit.php";
 }
 
 
@@ -116,8 +109,8 @@ function viderPanier()
     header("Location: index.php?page=panier");
     exit;
 
-    
-     $title = "panier";
+
+    $title = "panier";
 
     ob_start();
     require "Vues/VueUser/panier.php";
@@ -143,7 +136,7 @@ function diminuerQuantite()
 
     header("Location: index.php?page=panier");
     exit;
-     $title = "panier";
+    $title = "panier";
 
     ob_start();
     require "Vues/VueUser/panier.php";
@@ -164,7 +157,7 @@ function augmenterQuantite()
 
     header("Location: index.php?page=panier");
     exit;
-     $title = "panier";
+    $title = "panier";
 
     ob_start();
     require "Vues/VueUser/panier.php";

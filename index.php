@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'home' ;
 
 switch ($page) {
 

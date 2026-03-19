@@ -6,13 +6,13 @@
                 Retour au catalogue
             </a>
         </p>
-    <?php else: ?>
-        <?php if (!empty($_SESSION['message'])): ?>
-        <div class="alert alert-danger text-center">
-            <?= $_SESSION['message'];
-            unset($_SESSION['message']); ?>
-        </div>
-    <?php endif; ?>
+        <?php else: ?>
+            <?php if (!empty($_SESSION['message'])): ?>
+            <div class="alert alert-success text-center">
+                <?= $_SESSION['message'];
+                unset($_SESSION['message']); ?>
+            </div>
+        <?php endif; ?>
         <table class="table table-bordered">
             <thead>
                 <tr style="color: black; font-weight: bold;">
@@ -40,6 +40,7 @@
                         <!-- Quantité -->
                         <td data-label="Quantité">
                             <a href="index.php?page=diminuer&id=<?= $p['idProduit'] ?>"
+                                onclick="return confirm('Diminuer la quantité de ce produit ?');"
                                 class="btn btn-outline-secondary btn-sm">-</a>
 
                             <span><?= number_format($p['quantite']) ?></span>
@@ -56,7 +57,7 @@
                         <!-- Supprimer -->
                         <td data-label="Supprimer">
                             <a href="index.php?page=supprimer&id=<?= htmlspecialchars($p['idProduit']) ?>"
-                                class="btn btn-danger btn-sm">
+                                onclick="return confirm('Voulez-vous vraiment supprimer ce produit du panier ?');"class="btn btn-danger btn-sm">
                               <i class="bi bi-trash"></i>
                             </a>
                         </td>
@@ -66,7 +67,7 @@
         </table>
         <div class="text d-flex justify-content-between align-items-center mt-3">
             <h3 style="color: red">Total : <?= number_format($total) ?> €</h3>
-            <a href="index.php?page=viderPanier" class="btn btn-danger">
+            <a href="index.php?page=viderPanier"  onclick="return confirm('Voulez-vous vraiment vider votre panier ?');"class="btn btn-danger">
                 Vider le panier
             </a>
             <a href="index.php?page=commande" class="btn btn-success">

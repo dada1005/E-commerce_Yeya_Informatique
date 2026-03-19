@@ -46,6 +46,14 @@ function connecterClient()
         'role'  => $client['role']
     ];
 
+   // Redirection après login (ex: confirmerCommande)
+    if (isset($_SESSION['redirect_after_login'])) {
+        $page = $_SESSION['redirect_after_login'];
+        unset($_SESSION['redirect_after_login']);
+        header("Location: $page");
+        exit;
+    }
+
     header("Location: index.php?page=home");
     exit;
 }
