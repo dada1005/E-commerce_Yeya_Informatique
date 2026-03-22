@@ -1,6 +1,6 @@
 <h2>Détail de la commande #<?= $commande['idCommande'] ?></h2>
 
-<p><strong>Client :</strong> <?= $commande['nomClient'] ?> (<?= $commande['mailClient'] ?>)</p>
+<p><strong>Client :</strong> <?= $commande['nomUsers'] ?> (<?= $commande['mailUsers'] ?>)</p>
 <p><strong>Date :</strong> <?= $commande['dateCommande'] ?></p>
 <p><strong>Total :</strong> <?= $commande['totalCommande'] ?> €</p>
 
