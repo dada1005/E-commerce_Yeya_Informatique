@@ -82,7 +82,9 @@ function afficherCommande()
 
         $total += $p['total_ligne'];
         $produits[] = $p;
+        
     }
+   
 
     $title = "Validation de la commande";
 

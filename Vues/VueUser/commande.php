@@ -1,6 +1,7 @@
 <div class="container my-5">
     <h2 class="mb-4">Validation de votre commande</h2>
-        <thead>
+    <table class="table table-bordered">
+        <thead style="color: black; font-weight: bold;">
             <tr>
                 <th>Produit</th>
                 <th>Quantité</th>
