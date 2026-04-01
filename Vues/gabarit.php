@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href=".//Assets/style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 </head>
@@ -36,48 +36,48 @@
                     <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                         <a class="nav-link" href="index.php?page=dashboard">Administration</a>
 
-                        <!-- PERSONNE CONNECTÉE -->
+                        <!-- PERSONNE N'EST PAS CONNECTÉE -->
                     <?php else: ?>
                         <a class="nav-link" href="index.php?page=login">Connexion</a>
                     <?php endif; ?>
                 </div>
-                <div class="dropdown">
+            </div>
+            <div class="dropdown">
 
-                    <!-- CLIENT CONNECTÉ -->
-                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
-                            Mon compte
-                        </button>
+                <!-- CLIENT CONNECTÉ -->
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client'): ?>
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                        Mon compte
+                    </button>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="index.php?page=modifierCompte" style="font-size: 1.3rem;">
-                                    <i class="bi bi-person-fill"></i> Profil
-                                </a></li>
-                            <li><a class="dropdown-item" href="index.php?page=logout" style="font-size: 1.3rem;">Déconnexion</a></li>
-                        </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="index.php?page=modifierCompte" style="font-size: 1.3rem;">
+                                <i class="bi bi-person-fill"></i> Profil
+                            </a></li>
+                        <li><a class="dropdown-item" href="index.php?page=logout" style="font-size: 1.3rem;">Déconnexion</a></li>
+                    </ul>
 
-                        <!-- ADMIN CONNECTÉ -->
-                    <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
-                        <button class="btn btn-danger dropdown-toggle" type="button"
-                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="color: white;font-size: 1.5rem;">
-                            Admin
-                        </button>
+                    <!-- ADMIN CONNECTÉ -->
+                <?php elseif (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                    <button class="btn btn-danger dropdown-toggle" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="color: white;font-size: 1.5rem;">
+                        Admin
+                    </button>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="index.php?page=dashboard" style="font-size: 1.3rem;">Tableau de bord</a></li>
-                            <li><a class="dropdown-item" href="index.php?page=logoutAdmin" style="font-size: 1.3rem;">Déconnexion</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="index.php?page=dashboard" style="font-size: 1.3rem;">Tableau de bord</a></li>
+                        <li><a class="dropdown-item" href="index.php?page=logoutAdmin" style="font-size: 1.3rem;">Déconnexion</a></li>
 
-                        </ul>
+                    </ul>
 
-                        <!-- PERSONNE CONNECTÉE -->
-                    <?php else: ?>
-                        <!-- Rien ici, car le bouton Connexion est déjà affiché -->
-                    <?php endif; ?>
+                    <!-- PERSONNE CONNECTÉE -->
+                <?php else: ?>
+                    <!-- Rien ici, car le bouton Connexion est déjà affiché -->
+                <?php endif; ?>
 
-                </div>
             </div>
         </div>
     </nav>
@@ -89,7 +89,7 @@
 
 
 
-    
+
     <footer class="footer">
         <div class="footer-container">
 

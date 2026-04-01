@@ -19,4 +19,8 @@
     <div class="text-center mt-4">
         <a class="btn btn-secondary" href="index.php?page=catalogue">Afficher tout</a>
     </div>
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up-circle-fill"></i>
+    </a>
+
 </section>

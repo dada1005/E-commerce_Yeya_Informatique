@@ -64,6 +64,7 @@ function deconnexion()
 {
     unset($_SESSION['user']);
     $_SESSION['message'] = "Vous êtes maintenant déconnecté.";
+    
     header("Location: index.php?page=home");
     exit;
 }

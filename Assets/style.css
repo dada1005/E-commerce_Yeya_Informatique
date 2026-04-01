@@ -30,6 +30,23 @@ h2 {
     margin: 15px;
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 3rem;
+    color: red;
+    cursor: pointer;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.back-to-top:hover {
+    color: gray;
+}
+.object-fit-cover {
+    object-fit: cover;
+}
 /* FOOTER */
 .footer {
     background: #111;

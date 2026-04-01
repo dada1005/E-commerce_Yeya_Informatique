@@ -25,9 +25,9 @@
     </div>
     <div class="hero-content text-center mt-4" style="position: absolute; top: 50%;left: 50%;transform: translate(-50%, -50%);
     color: white;text-align: center;z-index: 10;">
-        <h1 class="display-5" style="text-align: center;color: rgb(245, 5, 5, 100%);margin: 10px;">Bienvenue chez Yeya Informatique</h1>
-        <p style="font-size: 1.5rem; margin-top: 10px;color: black;-align: center;">Votre magasin informatique à Caudebec-lès-Elbeuf</p>
-        <a class="btn btn-primary" href="index.php?page=catalogue" style=" margin-top: 10px;padding: 15px;background-color: #f63e4e;
+        <h1 class="display-5" style="text-align: center;color: rgb(245, 5, 5, 100%);margin: 10px; font-weight: bold;">Bienvenue chez Yeya Informatique</h1>
+        <p style="font-size: 1.5rem; margin-top: 10px;color: black;-align: center; font-weight: bold;">Votre magasin informatique à Caudebec-lès-Elbeuf</p>
+        <a class="button" href="index.php?page=catalogue" style=" margin-top: 20px;padding: 15px;background-color: #f63e4e;
     color: white;border-radius: 5px;font-weight: bold;text-decoration: none;">Voir le catalogue</a>
     </div>
 </section>
@@ -63,6 +63,9 @@
         Lire la suite
     </a>
 </section>
+<a href="#" class="back-to-top">
+    <i class="bi bi-arrow-up-circle-fill"></i>
+</a>
 
 <!-- SECTION : CATÉGORIES -->
 <section class="container my-5">
